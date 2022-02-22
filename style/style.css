@@ -118,7 +118,7 @@
   width: 100%;
   color: #000;
   display: grid;
-  grid-template-columns: repeat(auto-fill,  minmax(280px, auto));
+  grid-template-columns: repeat(auto-fit,  minmax(280px, auto));
   grid-column-gap: 15px;
   grid-row-gap: 20px;
 }
@@ -187,6 +187,7 @@
   background-color: #fff;
   padding-top: 34px;
   box-sizing: border-box;
+  border-radius: 10px;
   position: fixed;
   top: 195px;
   left: calc(50% - 215px);
@@ -210,9 +211,6 @@
 }
 
 .popup__form-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border: none;
   padding: 0;
   margin: 0;
@@ -222,15 +220,19 @@
   width: 358px;
   height: 25px;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
   margin: auto;
 }
 
+.popup__form-name{
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
 .popup__form-profetional {
   margin-top: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 
 .popup__form-save {
@@ -281,20 +283,38 @@
   flex-direction: column;
   }
 
+  .profil-content__profethional {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
   .profil__btn{
     width: 50%;
   }
 }
 
 @media screen and ( max-width: 530px) {
-  .popup {
+  .profil-content__name{
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+  }
+
+  .profil-info__avatar {
+    margin-right: 0;
+  }
+
+  .profil__btn {
+    width: 100%;
+    padding: 0;
+  }
+
+   .popup__containe {
     width: calc(100% - 40px);
-    height: 320px;
     top: 125px;
     left: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 25px 20px;
   }
 
   .popup-close_bng {
@@ -306,43 +326,26 @@
     font-size: 18px;
     line-height: 22px;
     margin-left: 0;
+    text-align: center;
+  }
+
+ 
+  
+  .popup__form-content {
+    width: 100%;
+  } 
+
+  .popup__form-save {
+    width: 100%;
   }
 
   .popup__form {
-    width: calc(100%-20px);
+    width: 100%;
     margin-top: 0;
   }
-
+  
   .popup__form-profetional {
+    width: 100% - 40px;
     margin-top: 30px;
   }
-
-  .popup__form-save {
-    width: calc(100%-20px);
-  }
 }
-
-@media screen and (max-width: 425px) {
-  .profil__btn{
-    width: 240px;
-  }
-
-  .popup__form {
-    width: 240px;
-  }
-
-  .popup__form-save {
-    width: 240px;
-  }
-}
-/* 
-@media screen and (max-width: 320px){
-  .popup__form {
-    width: 240px;
-
-  }
-
-  .popup__form-save {
-    width: 240px;
-  }
-} */
