@@ -1,5 +1,5 @@
 .popup__form-save {
-  width: 358px;
+  width: 100%;
   height: 50px;
   box-sizing: border-box;
   padding: 0;
@@ -16,10 +16,4 @@
 
 .popup__form-save:hover {
   opacity: .8;
-}
-
-@media screen and ( max-width: 530px) {
-  .popup__form-save {
-    width: 100%;
-  }
 }

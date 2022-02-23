@@ -8,10 +8,11 @@
   position: fixed;
   top: 195px;
   left: calc(50% - 215px);
+  padding: 36px 35px;
 }
 
 @media screen and ( max-width: 530px) {
-  .popup__containe {
+  .popup__container {
    width: calc(100% - 40px);
    top: 125px;
    left: 20px;
