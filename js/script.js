@@ -1,7 +1,7 @@
 //---------------открытие\закрытие попапа-----------------------
 let popupBg = document.querySelector('.popup'); // Фон попап окна
 let openPopupButton = document.querySelector('.profil-content__btn'); // Кнопки для показа окна
-let closePopupButton = document.querySelector('.popup-close_bng'); // Кнопка для скрытия окна
+let closePopupButton = document.querySelector('.popup__container-btn'); // Кнопка для скрытия окна
 
 openPopupButton.addEventListener('click', function() { //отслеживание действия с кнопкой попапа
 			popupBg.classList.add('popup_opened'); // Добавляем класс 'active' для фона
