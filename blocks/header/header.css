@@ -8,5 +8,6 @@
   .header {
     width: 100vw;
     border-bottom: 1px solid rgba(84, 84, 84, .7);
+    padding-bottom: 30px;
   }
 }

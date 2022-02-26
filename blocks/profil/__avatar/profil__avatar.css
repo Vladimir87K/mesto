@@ -1,4 +1,4 @@
-.profil-info__avatar {
+.profil__avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -6,7 +6,8 @@
 }
 
 @media screen and ( max-width: 530px) {
-  .profil-info__avatar {
+  .profil__avatar {
     margin-right: 0;
+    margin-bottom: 25px;
   }
 }

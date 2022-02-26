@@ -2,13 +2,24 @@
   position: absolute;
   width: 32px;
   height: 32px;
+  background-color: #000;
+  background-image: url(../../../image/Close_Icon.png);
+  background-repeat: no-repeat;
+  object-fit: cover;
+  object-position: center;
   top: -40px;
   right: -40px;
   cursor: pointer;
+  border: none;
+  padding: 0;
 }
 
 @media screen and ( max-width: 530px) {
   .popup__container-btn {
+    width: 20px;
+    height: 20px;
+    top: -36px;
     right: 0;
+    background-size: 20px;
   }
 }
