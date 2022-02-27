@@ -1,4 +1,4 @@
-# Проект: Mesto (https://github.com/Vladimir87K/mesto.git)
+# Проект: Mesto (https://vladimir87k.github.io/mesto/index.html)
 
 Проект создан в рамках программы обучения __ЯндексПрактикума__
 
