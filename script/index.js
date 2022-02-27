@@ -1,15 +1,18 @@
 //---------------открытие\закрытие попапа-----------------------
-let popupBg = document.querySelector('.popup'); // Фон попап окна
-let openPopupButton = document.querySelector('.profil-content__btn'); // Кнопки для показа окна
-let closePopupButton = document.querySelector('.popup__container-btn'); // Кнопка для скрытия окна
+const popupBg = document.querySelector('.popup'); // Фон попап окна
+const	openPopupButton = document.querySelector('.profil-content__btn'); // Кнопки для показа окна
+const	closePopupButton = document.querySelector('.popup__container-btn'); // Кнопка для скрытия окна
 
-openPopupButton.addEventListener('click', function() { //отслеживание действия с кнопкой попапа
-			popupBg.classList.add('popup_opened'); // Добавляем класс 'active' для фона
-});
+const formElement = document.querySelector('.userData');
 
-closePopupButton.addEventListener('click',() => { // Вешаем обработчик на крестик
-	popupBg.classList.remove('popup_opened'); // Убираем активный класс с фона
-});
+let nameInput = document.querySelector('.popup__form-name');						//	введение ФИО пользователя
+let jobInput = document.querySelector('.popup__form-profetional');			//	введение профессии пользователя
+let userName = document.querySelector('.profil-content__name'); 				//	строка в профиле - ФИО
+let userJob = document.querySelector('.profil-content__profethional');	//	строка в профиле - профессия
+
+function actionPopap() {											// выведение открытия и закрытия попапа
+	popupBg.classList.toggle('popup_opened');		//	в отдельную функцию через
+}																							//	действие toggle
 
 //------------------------- реакция на лайки------------------
 let cardLike = document.querySelectorAll('.card__like'); // вызов кнопок like
@@ -23,28 +26,21 @@ cardLike.forEach( (like) => {														//перебор всех кнопо�
 
 //--------работа с попапом - введение информации в поля----------
 
-// Находим форму в DOM
-let formElement = document.querySelector('.popup__form-save');
-
-
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
-	evt.preventDefault();
+	evt.preventDefault()
 	// Находим поля формы в DOM
-let nameInput = document.querySelector('.popup__form-name');
-let jobInput = document.querySelector('.popup__form-profetional');
-
-let userName = document.querySelector('.profil-content__name');  // Выберите элементы, куда должны быть вставлены значения полей
-let userJob = document.querySelector('.profil-content__profethional');
-
-userName.textContent = nameInput.value;  // Вставьте новые значения с помощью textContent
-userJob.textContent = jobInput.value;
-
-popupBg.classList.remove('popup_opened');//закрытие попапа после нажатия сохранить
+	userName.textContent = nameInput.value;  // Вставьте новые значения с помощью textContent
+	userJob.textContent = jobInput.value;
+	actionPopap();//закрытие попапа после нажатия сохранить
 }
+
+openPopupButton.addEventListener('click', actionPopap); //обработчик событий на кнопке показа попапа
+
+closePopupButton.addEventListener('click',actionPopap); // обработчик на крестик попапа
 
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('click', formSubmitHandler);
+formElement.addEventListener('submit', formSubmitHandler);
