@@ -3,7 +3,7 @@ const popupBg = document.querySelector('.popup'); // Фон попап окна
 const	openPopupButton = document.querySelector('.profil-content__btn'); // Кнопки для показа окна
 const	closePopupButton = document.querySelector('.popup__container-btn'); // Кнопка для скрытия окна
 
-const formElement = document.querySelector('.userData');
+const formElement = document.querySelector('.popup-information');
 
 let nameInput = document.querySelector('.popup__form-name');						//	введение ФИО пользователя
 let jobInput = document.querySelector('.popup__form-profetional');			//	введение профессии пользователя

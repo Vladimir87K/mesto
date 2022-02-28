@@ -17,3 +17,10 @@
 .popup__form-save:hover {
   opacity: .8;
 }
+
+@media screen and (max-width: 360px) {
+  .popup__form-save {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
