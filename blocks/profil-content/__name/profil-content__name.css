@@ -8,7 +8,7 @@
 
 @media screen and ( max-width: 530px) {
   .profil-content__name{
-    max-width: 80vw;
+    max-width: 85%;
     font-weight: 500;
     font-size: 27px;
     line-height: 33px;

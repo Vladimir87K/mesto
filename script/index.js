@@ -10,9 +10,15 @@ let jobInput = document.querySelector('.popup__form-profetional');			//	введ
 let userName = document.querySelector('.profil-content__name'); 				//	строка в профиле - ФИО
 let userJob = document.querySelector('.profil-content__profethional');	//	строка в профиле - профессия
 
-function actionPopap() {											// выведение открытия и закрытия попапа
-	popupBg.classList.toggle('popup_opened');		//	в отдельную функцию через
+function openPopap() {											// выведение открытия попапа
+	popupBg.classList.toggle('popup_opened');		//	в отдельную функцию через	действие toggle
+	nameInput.value = userName.textContent;			//	занесение данных пользователя
+	jobInput.value = userJob.textContent;				//	с полей профиля в поля формы попапа
 }																							//	действие toggle
+
+function closePopap() {
+	popupBg.classList.remove('popup_opened');
+}
 
 //--------работа с попапом - введение информации в поля----------
 
@@ -23,12 +29,12 @@ function formSubmitHandler (evt) {
 	// Находим поля формы в DOM
 	userName.textContent = nameInput.value;  // Вставьте новые значения с помощью textContent
 	userJob.textContent = jobInput.value;
-	actionPopap();//закрытие попапа после нажатия сохранить
+	closePopap();//закрытие попапа после нажатия сохранить
 }
 
-openPopupButton.addEventListener('click', actionPopap); //обработчик событий на кнопке показа попапа
+openPopupButton.addEventListener('click', openPopap); //обработчик событий на кнопке показа попапа
 
-closePopupButton.addEventListener('click',actionPopap); // обработчик на крестик попапа
+closePopupButton.addEventListener('click', closePopap); // обработчик на крестик попапа
 
 
 // Прикрепляем обработчик к форме:
