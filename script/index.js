@@ -1,7 +1,11 @@
 //---------------открытие\закрытие попапа-----------------------
-const popupBg = document.querySelector('.popup'); // Фон попап окна
-const	openPopupButton = document.querySelector('.profil-content__btn'); // Кнопки для показа окна
-const	closePopupButton = document.querySelector('.popup__container-btn'); // Кнопка для скрытия окна
+const popupBgAll = document.querySelectorAll('.popup'); // Фон всех попап-окон
+const popupProfil = document.querySelector('.popup-profil')           // Попап профиля (ФИО, профессия)
+const	openPopupButton = document.querySelector('.profil-content__btn'); // Кнопк для показа профиля
+const	closePopupButtons = document.querySelectorAll('.popup__container-btn'); // Кнопки для скрытия всех окон попапов
+
+const popupCard = document.querySelector('.popup-image');         //фон попапа окна для добавления катринок
+const openPopupCardButton = document.querySelector('.profil__btn'); //кнопка окна добавления карточки
 
 const formElement = document.querySelector('.popup-information');
 
@@ -10,14 +14,48 @@ let jobInput = document.querySelector('.popup__form-profetional');			//	введ
 let userName = document.querySelector('.profil-content__name'); 				//	строка в профиле - ФИО
 let userJob = document.querySelector('.profil-content__profethional');	//	строка в профиле - профессия
 
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 function openPopap() {											// выведение открытия попапа
-	popupBg.classList.toggle('popup_opened');		//	в отдельную функцию через	действие toggle
+	popupProfil.classList.add('popup_opened');		//	в отдельную функцию через	действие toggle
 	nameInput.value = userName.textContent;			//	занесение данных пользователя
 	jobInput.value = userJob.textContent;				//	с полей профиля в поля формы попапа
 }																							//	действие toggle
 
 function closePopap() {
-	popupBg.classList.remove('popup_opened');
+	popupBgAll.forEach(popupBg => {
+    popupBg.classList.remove('popup_opened');
+  })
+  
+}
+
+function openPopapCard() {
+  popupCard.classList.add('popup_opened');
 }
 
 //--------работа с попапом - введение информации в поля----------
@@ -34,19 +72,22 @@ function formSubmitHandler (evt) {
 
 openPopupButton.addEventListener('click', openPopap); //обработчик событий на кнопке показа попапа
 
-closePopupButton.addEventListener('click', closePopap); // обработчик на крестик попапа
+closePopupButtons.forEach(closePopupButton => {
+  closePopupButton.addEventListener('click', closePopap); // обработчик на крестик попапа
+})
 
+
+openPopupCardButton.addEventListener('click', openPopapCard); //обработчик событий на кнопке попапа картинок
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
 
 //------------------------- реакция на лайки------------------
+
 let cardLike = document.querySelectorAll('.card__like'); // вызов кнопок like
 cardLike.forEach( (like) => {														//перебор всех кнопок
-  like.addEventListener('click', function() {						//определение клика
-		console.log('likes');																//что делаем кликом
-		cardLike.innerHTML = '<img src=".//image/Union.png>"'
-	});
+  like.addEventListener('click', function() {
+		like.classList.toggle('card__like_active');
+	})						//определение клика
 });
-//-------------конец реакции на лайки

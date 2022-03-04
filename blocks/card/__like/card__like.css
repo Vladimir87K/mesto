@@ -1,5 +1,6 @@
 .card__like {
   width: 22px;
+  height: 22px;
   background-color: #fff;
   background-image: url(../../../image/Vector.svg);
   background-size: 22px 19px;
