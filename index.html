@@ -96,10 +96,10 @@
       <div class="popup__container">
         <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="imageData" class="popup-information">
+        <form name="imageData" class="popup-information popap-card">
           <fieldset class="popup__form-content">
-              <input type="text" class="popup__form popup__form-name-image" name="imageName" value="Название">           
-              <input type="text" class="popup__form popup__form-url-image" name="urlName" value="Ссылка на место">
+              <input type="text" class="popup__form popup__form-name-image" name="imageName" value="" placeholder="Название">           
+              <input type="text" class="popup__form popup__form-url-image" name="urlName" value="" placeholder="Ссылка на место">
               <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
           </fieldset>
         </form>
@@ -111,6 +111,17 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
+
+  <template class="cart-template">
+    <article class="card">
+      <img class="card__img" src="#" alt="#">
+      <div class="card__content content-overflow">
+        <h2 class="card__title"></h2>
+        <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
+      </div>
+      <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
+    </article>
+  </template>
   <script src="./script/index.js"></script>
 </body>
 </html>
