@@ -28,54 +28,16 @@
     </section>
 
     <section class="cards">
-      <article class="card">
-        <img class="card__img" src="./image/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
-        <div class="card__content content-overflow">
-          <h2 class="card__title">Карачаевск</h2>
-          <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
-        </div>
-        <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
-      </article>
-      <article class="card">
-        <img class="card__img" src="./image/kirill-pershin-1404681-unsplash(1).png" alt="гора Эльбрус">
-        <div class="card__content">
-          <h2 class="card__title content-overflow">Гора Эльбрус</h2>
-          <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
-        </div>
-        <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
-      </article>
-      <article class="card">
-        <img class="card__img" src="./image/kirill-pershin-1556355-unsplash(1).png" alt="Домбай">
-        <div class="card__content">
-          <h2 class="card__title content-overflow">Домбай</h2>
-          <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
-        </div>
-        <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
-      </article>
-      <article class="card">
-        <img class="card__img" src="./image/kirill-pershin-1404681-unsplash(1).png" alt="гора Эльбрус">
-        <div class="card__content">
-          <h2 class="card__title content-overflow">Гора Эльбрус</h2>
-          <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
-        </div>
-        <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
-      </article>
-      <article class="card">
-        <img class="card__img" src="./image/kirill-pershin-1556355-unsplash(1).png" alt="Домбай">
-        <div class="card__content">
-          <h2 class="card__title content-overflow">Домбай</h2>
-          <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
-        </div>
-        <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
-      </article>
-      <article class="card">
-        <img class="card__img" src="./image/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
-        <div class="card__content">
-          <h2 class="card__title content-overflow">Карачаево-Черкесия</h2>
-          <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
-        </div>
-        <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
-      </article>
+      <template class="card-template">
+        <article class="card">
+          <img class="card__img" src="#" alt="#">
+          <div class="card__content content-overflow">
+            <h2 class="card__title content-overflow"></h2>
+            <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
+          </div>
+          <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
+        </article>
+      </template>
     </section>
 
     <section class="popup popup-profil">
@@ -92,7 +54,7 @@
       </div>
     </section>
 
-    <section class="popup popup-image">
+    <section class="popup popup-card">
       <div class="popup__container">
         <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
         <h2 class="popup__title">Новое место</h2>
@@ -106,22 +68,20 @@
       </div>
     </section>
 
+    <section class="popup popup-image">
+      <div class="popup-image__container">
+        <img class="popap-image__img" src="#" alt="#">
+        <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
+        <h2 class="popup-image__title"></h2>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
 
-  <template class="cart-template">
-    <article class="card">
-      <img class="card__img" src="#" alt="#">
-      <div class="card__content content-overflow">
-        <h2 class="card__title"></h2>
-        <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
-      </div>
-      <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
-    </article>
-  </template>
   <script src="./script/index.js"></script>
 </body>
 </html>

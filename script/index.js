@@ -1,76 +1,30 @@
 //---------------открытие\закрытие попапа-----------------------
 const popupBgAll = document.querySelectorAll('.popup'); // Фон всех попап-окон
 const popupProfil = document.querySelector('.popup-profil')           // Попап профиля (ФИО, профессия)
-const	openPopupButton = document.querySelector('.profil-content__btn'); // Кнопк для показа профиля
-const	closePopupButtons = document.querySelectorAll('.popup__container-btn'); // Кнопки для скрытия всех окон попапов
+const popupCard = document.querySelector('.popup-card');         //фон попапа окна для добавления катринок
 
-const popupCard = document.querySelector('.popup-image');         //фон попапа окна для добавления катринок
-const openPopupCardButton = document.querySelector('.profil__btn'); //кнопка окна добавления карточки
-
-const formElement = document.querySelector('.popup-information');   // форма информации профиля
+const formProfil = document.querySelector('.popup-information');   // форма информации профиля
 const formCard = document.querySelector('.popap-card');             // форма информации карточек
+const formImg = document.querySelector('.popup-image');             // форма попапа картинки
 
-let nameInput = document.querySelector('.popup__form-name');						//	введение ФИО пользователя
-let jobInput = document.querySelector('.popup__form-profetional');			//	введение профессии пользователя
-let userName = document.querySelector('.profil-content__name'); 				//	строка в профиле - ФИО
-let userJob = document.querySelector('.profil-content__profethional');	//	строка в профиле - профессия
+const openPopupCardButton = document.querySelector('.profil__btn');           //кнопка окна добавления карточки
+const	openPopupButton = document.querySelector('.profil-content__btn');       // Кнопк для показа профиля
+const	closePopupButtons = document.querySelectorAll('.popup__container-btn'); // Кнопки для зарытия всех окон попапов
+const cardDeleteButtons = document.querySelectorAll('.card__delete');         // кнопка удаления карточки
+const cardLikeButtons = document.querySelectorAll('.card__like');             // лайк
 
+const nameInput = document.querySelector('.popup__form-name');						//	введение ФИО пользователя
+const jobInput = document.querySelector('.popup__form-profetional');			//	введение профессии пользователя
+const userName = document.querySelector('.profil-content__name'); 				//	строка в профиле - ФИО
+const userJob = document.querySelector('.profil-content__profethional');	//	строка в профиле - профессия
 
+const popapCardTitile  = document.querySelector('.popup__form-name-image');    // введение названия места в попапе карточки
+const popapCardUrl = document.querySelector('.popup__form-url-image');         // введение адреса картинки
+const cards = document.querySelector('.cards');                                // область карточек
+const cardTemplate = document.querySelector('.card-template')                  // темплате-карта          
 
-function openPopap() {											// выведение открытия попапа
-	popupProfil.classList.add('popup_opened');		//	в отдельную функцию через	действие toggle
-	nameInput.value = userName.textContent;			//	занесение данных пользователя
-	jobInput.value = userJob.textContent;				//	с полей профиля в поля формы попапа
-}																							//	действие toggle
-
-function closePopap() {
-	popupBgAll.forEach(popupBg => {             //закрытие всех попапов
-    popupBg.classList.remove('popup_opened');
-  }) 
-}
-
-function openPopapCard() {
-  popupCard.classList.add('popup_opened');
-}
-
-//--------работа с попапом - введение информации в поля----------
-
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function formSubmitHandler (evt) {
-	evt.preventDefault()
-	// Находим поля формы в DOM
-	userName.textContent = nameInput.value;  // Вставьте новые значения с помощью textContent
-	userJob.textContent = jobInput.value;
-	closePopap();//закрытие попапа после нажатия сохранить
-}
-
-openPopupButton.addEventListener('click', openPopap); //обработчик событий на кнопке показа попапа
-
-closePopupButtons.forEach(closePopupButton => {
-  closePopupButton.addEventListener('click', closePopap); // обработчик на крестик попапа
-})
-
-
-openPopupCardButton.addEventListener('click', openPopapCard); //обработчик событий на кнопке попапа картинок
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
-
-//------------------------- реакция на лайки------------------
-
-let cardLike = document.querySelectorAll('.card__like'); // вызов кнопок like
-cardLike.forEach( (like) => {														//перебор всех кнопок
-  like.addEventListener('click', function() {
-		like.classList.toggle('card__like_active');
-	})						//определение клика
-});
-
-
-
-
-//------------------------работа с cards
+const popapImage = document.querySelector('.popap-image__img');               // увеличение картинки
+const popapImageTitle = document.querySelector('.popup-image__title');        // подпись картинки
 
 const initialCards = [
   {
@@ -96,40 +50,59 @@ const initialCards = [
   {
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
+  },
+  {
+    name: 'Дагестан',
+    link: 'https://images.unsplash.com/photo-1626517545905-dd9a490e013b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8JUQxJTgwJUQwJUJFJUQxJTgxJUQxJTgxJUQwJUI4JUQxJThGfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Мещерский парк',
+    link: 'https://images.unsplash.com/photo-1594714936914-2713fadc5f02?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fCVEMSU4MCVEMCVCRSVEMSU4MSVEMSU4MSVEMCVCOCVEMSU4RnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Роза Хутор',
+    link: 'https://images.unsplash.com/photo-1617117833203-c91b04e0431f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fCVEMSU4MCVEMCVCRSVEMSU4MSVEMSU4MSVEMCVCOCVEMSU4RnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+  },
 ];
 
-const cards = document.querySelector('.cards');
+function openPopapProfil() {											// открытие попапа профиля
+	popupProfil.classList.add('popup_opened');
+	nameInput.value = userName.textContent;			    //	занесение данных пользователя
+	jobInput.value = userJob.textContent;				    //	с полей профиля в поля формы попапа
+}																							
+
+function openPopapCard() {                        // открытие попапа карточки
+  popupCard.classList.add('popup_opened');
+}
+
+function openPopapImg() {                         // открытие попапа картинки
+  formImg.classList.add('popup_opened');
+}
+
+function closePopap() {
+	popupBgAll.forEach(popupBg => {                 //закрытие любого попапа крестиком
+    popupBg.classList.remove('popup_opened');
+  }) 
+}
+
+function formSubmitProfil (evt) {
+	evt.preventDefault();
+	userName.textContent = nameInput.value;         // перенос значений из полей в страницу 
+	userJob.textContent = jobInput.value;           // попап профиля
+	closePopap();
+}
 
 function renderInitialCards(element) {
-  let card = document.querySelector('.cart-template').content.firstElementChild.cloneNode(true);
-  card.querySelector('.card__img').src = element.link;
-  card.querySelector('.card__img').alt = element.name;
-  card.querySelector('.card__title').textContent = element.name;
+  const newCard = cardTemplate.content.firstElementChild.cloneNode(true); //создание копии темплате
+  newCard.querySelector('.card__img').src = element.link;                             // перенос ссылки в созданную карточку
+  newCard.querySelector('.card__img').alt = element.name;                             // сознаие alt картинки
+  newCard.querySelector('.card__title').textContent = element.name;                   // заголовок карточки
 
-  likeCard(card);
-  cardDelete(card);
+  likeCard(newCard);                                         // реакция на лайк
+  cardDelete(newCard);                                       // реакция на удаление
+  cardImgPopap(newCard);                                     // реакция на нажатие картинки
 
-  cards.append(card);
-}
-
-function removeCard(event) {
-  const card = event.currentTarget.closest('.card');
-  card.remove();
-}
-
-function cardDelete(card) {
-  card.querySelector('.card__delete').addEventListener('click', removeCard)
-}
-
-function addLikeCard(event) {
-  const like = event.target;
-  console.log(like);
-  like.classList.toggle('card__like_active');
-}
-
-function likeCard(card) {
-  card.querySelector('.card__like').addEventListener('click', addLikeCard);
+  cards.append(newCard);                                     // добавление элемента на страницу
 }
 
 function addNewCard(event) {                                                // добавление данных новой карточки
@@ -142,6 +115,41 @@ function addNewCard(event) {                                                // �
   renderInitialCards(element)
 }
 
-formCard.addEventListener('submit', addNewCard);
+function removeCard(event) {                                  // удаление карточки
+  const card = event.currentTarget.closest('.card');
+  card.remove();
+}
+
+function cardDelete(card) {                                   // реакция при нажатии на корзину
+    card.querySelector('.card__delete').addEventListener('click', removeCard)
+}
+
+function addLikeCard(event) {                                  // активация лайка
+  event.target.classList.toggle('card__like_active');
+}
+
+function likeCard(card) {                                       // реакция на нажатие лайка
+    card.querySelector('.card__like').addEventListener('click', addLikeCard);
+}
+
+function openPopapImgAction(evt) {                                // открытие попапа-картинки с присваиванием изображения и подписи
+  popapImageTitle.textContent = evt.target.closest('.card').querySelector('.card__title').innerHTML;
+  popapImage.src = evt.target.closest('.card').querySelector('.card__img').src;
+  openPopapImg();
+}
+
+function cardImgPopap(card) {                                           // реакция на нажатие картинки
+    card.querySelector('.card__img').addEventListener('click', openPopapImgAction);
+}
+
+openPopupButton.addEventListener('click', openPopapProfil);     //обработчик событий на кнопке показа попапа
+openPopupCardButton.addEventListener('click', openPopapCard);   //обработчик событий на кнопке попапа картинок
+
+closePopupButtons.forEach(closePopupButton => {                 // закрытие любого попапа
+  closePopupButton.addEventListener('click', closePopap);       // обработчик на крестик попапа (любого)
+})
+
+formProfil.addEventListener('submit', formSubmitProfil);      // слушатель событий (отправки) формы профиля
+formCard.addEventListener('submit', addNewCard);              // слушатель событий (отправка) новой карточки
 
 initialCards.map(renderInitialCards);
