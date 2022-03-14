@@ -85,7 +85,7 @@ function formSubmitProfil (evt) {
 	evt.preventDefault();
 	userName.textContent = nameInput.value;         // перенос значений из полей в страницу 
 	userJob.textContent = jobInput.value;           // попап профиля
-	closePopap();
+	closePopap();                                   // закрытие попапа
 }
 
 function renderInitialCards(element) {
