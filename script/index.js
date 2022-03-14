@@ -1,11 +1,11 @@
-//---------------открытие\закрытие попапа-----------------------
 const popupBgAll = document.querySelectorAll('.popup'); // Фон всех попап-окон
 const popupProfil = document.querySelector('.popup-profil')           // Попап профиля (ФИО, профессия)
 const popupCard = document.querySelector('.popup-card');         //фон попапа окна для добавления катринок
+const popapImg = document.querySelector('.popup-image');             // форма попапа картинки
 
 const formProfil = document.querySelector('.popup-information');   // форма информации профиля
 const formCard = document.querySelector('.popap-card');             // форма информации карточек
-const formImg = document.querySelector('.popup-image');             // форма попапа картинки
+
 
 const openPopupCardButton = document.querySelector('.profil__btn');           //кнопка окна добавления карточки
 const	openPopupButton = document.querySelector('.profil-content__btn');       // Кнопк для показа профиля
@@ -65,18 +65,14 @@ const initialCards = [
   },
 ];
 
-function openPopapProfil() {											// открытие попапа профиля
-	popupProfil.classList.add('popup_opened');
+function openPopapProfil(item) {
 	nameInput.value = userName.textContent;			    //	занесение данных пользователя
 	jobInput.value = userJob.textContent;				    //	с полей профиля в поля формы попапа
+  openPopap(item);	                              // открытие попапа профиля
 }																							
 
-function openPopapCard() {                        // открытие попапа карточки
-  popupCard.classList.add('popup_opened');
-}
-
-function openPopapImg() {                         // открытие попапа картинки
-  formImg.classList.add('popup_opened');
+function openPopap(item) {                        // открытие попапа карточки
+  item.classList.add('popup_opened');
 }
 
 function closePopap() {
@@ -102,7 +98,7 @@ function renderInitialCards(element) {
   cardDelete(newCard);                                       // реакция на удаление
   cardImgPopap(newCard);                                     // реакция на нажатие картинки
 
-  cards.append(newCard);                                     // добавление элемента на страницу
+  cards.prepend(newCard);                                     // добавление элемента на страницу
 }
 
 function addNewCard(event) {                                                // добавление данных новой карточки
@@ -113,6 +109,9 @@ function addNewCard(event) {                                                // �
 
   closePopap();
   renderInitialCards(element)
+
+  document.querySelector('.popup__form-name-image').value= '';
+  document.querySelector('.popup__form-url-image').value = '';
 }
 
 function removeCard(event) {                                  // удаление карточки
@@ -135,15 +134,15 @@ function likeCard(card) {                                       // реакци�
 function openPopapImgAction(evt) {                                // открытие попапа-картинки с присваиванием изображения и подписи
   popapImageTitle.textContent = evt.target.closest('.card').querySelector('.card__title').innerHTML;
   popapImage.src = evt.target.closest('.card').querySelector('.card__img').src;
-  openPopapImg();
+  openPopap(popapImg);
 }
 
 function cardImgPopap(card) {                                           // реакция на нажатие картинки
     card.querySelector('.card__img').addEventListener('click', openPopapImgAction);
 }
 
-openPopupButton.addEventListener('click', openPopapProfil);     //обработчик событий на кнопке показа попапа
-openPopupCardButton.addEventListener('click', openPopapCard);   //обработчик событий на кнопке попапа картинок
+openPopupButton.addEventListener('click', () => {openPopapProfil(popupProfil)});     //обработчик событий на кнопке показа попапа
+openPopupCardButton.addEventListener('click', () => {openPopap(popupCard)});   //обработчик событий на кнопке попапа картинок
 
 closePopupButtons.forEach(closePopupButton => {                 // закрытие любого попапа
   closePopupButton.addEventListener('click', closePopap);       // обработчик на крестик попапа (любого)
