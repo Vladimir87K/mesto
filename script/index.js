@@ -23,7 +23,7 @@ const popapCardUrl = document.querySelector('.popup__form-url-image');         /
 const cards = document.querySelector('.cards');                                // область карточек
 const cardTemplate = document.querySelector('.card-template')                  // темплате-карта          
 
-const popapImage = document.querySelector('.popap-image__img');               // увеличение картинки
+const popapImage = document.querySelector('.popup-image__img');               // увеличение картинки
 const popapImageTitle = document.querySelector('.popup-image__title');        // подпись картинки
 
 const initialCards = [
