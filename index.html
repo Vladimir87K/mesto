@@ -46,8 +46,10 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <form name="userData" class="popup-information">
           <fieldset class="popup__form-content">
-              <input type="text" class="popup__form popup__form-name" name="userName" value="Жак-Ив Кусто">           
-              <input type="text" class="popup__form popup__form-profetional" name="userJob" value="Исследователь океана">
+              <input id="popup__form-name" type="text" class="popup__form popup__form-name" name="userName" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+              <span class="popup__form_error popup__form-name_error">Вы пропустили это поле</span>
+              <input id="popup__form-profetional" type="text" class="popup__form popup__form-profetional" name="userJob" value="Исследователь океана" minlength="2" maxlength="200" required>
+              <span class="popup__form_error popup__form-profetional_error">Вы пропустили это поле</span>
               <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
           </fieldset>
         </form>
@@ -60,8 +62,10 @@
         <h2 class="popup__title">Новое место</h2>
         <form name="imageData" class="popup-information popap-card">
           <fieldset class="popup__form-content">
-              <input type="text" class="popup__form popup__form-name-image" name="imageName" value="" placeholder="Название">           
-              <input type="text" class="popup__form popup__form-url-image" name="urlName" value="" placeholder="Ссылка на место">
+              <input id="popup__form-name-image" type="text" class="popup__form popup__form-name-image" name="imageName" value="" placeholder="Название" minlength="2" maxlength="30" required>           
+              <span class="popup__form_error popup__form-name-image_error">Вы пропустили это поле</span>
+              <input id="popup__form-url-image" type="url" class="popup__form popup__form-url-image" name="urlName" value="" placeholder="Ссылка на место" required>
+              <span class="popup__form_error popup__form-url-image_error">Вы пропустили это поле</span>
               <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
           </fieldset>
         </form>
