@@ -1,5 +1,6 @@
-.popup__form_error {
+.popup__form-error {
   font-size: 12px;
   line-height: 15px;
   color: #f00;
+  display: none;
 }
