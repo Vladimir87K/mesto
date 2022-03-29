@@ -1,5 +1,3 @@
-
-
 function showInputError(formElement, inputElement, errorMessage) { // показывает элемент ошибки
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add('popup__form_type_error');
@@ -44,13 +42,13 @@ function enableValidation() {                          // поиск всех ф
   });
 }
 
-function hasInvalidInput(inputList) {
+function hasInvalidInput(inputList) {                  // проверка валидности всех полей
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   })
 }
 
-function toggleButtonState(inputList, buttonElement) {
+function toggleButtonState(inputList, buttonElement) {  // включение\выключение кнопки
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add('popup__form-save_disable');
   } else {
@@ -59,3 +57,11 @@ function toggleButtonState(inputList, buttonElement) {
 }
 
 enableValidation();
+/* enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});  */
