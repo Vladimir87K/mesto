@@ -44,15 +44,15 @@
       <div class="popup__container">
         <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="userData" class="popup-information">
-          <fieldset class="popup__form-content" novalidate>
-              <input id="popup__form-name" type="text" class="popup__form popup__form-name" name="userName" 
-                value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
-              <span class="popup__form-error popup__form-name-error"></span>
-              <input id="popup__form-profetional" type="text" class="popup__form popup__form-profetional" 
-                name="userJob" value="Исследователь океана" minlength="2" maxlength="200" required>
-              <span class="popup__form-error popup__form-profetional-error"></span>
-              <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
+        <form name="userData" class="popup-information" novalidate>
+          <fieldset class="popup__form-content">
+            <input id="popup__form-name" type="text" class="popup__form popup__form-name" name="userName" 
+              value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+            <span class="popup__form-error popup__form-name-error"></span>
+            <input id="popup__form-profetional" type="text" class="popup__form popup__form-profetional" 
+              name="userJob" value="Исследователь океана" minlength="2" maxlength="200" required>
+            <span class="popup__form-error popup__form-profetional-error"></span>
+            <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
           </fieldset>
         </form>
       </div>
@@ -62,19 +62,15 @@
       <div class="popup__container">
         <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="imageData" class="popup-information popap-card">
-          <fieldset class="popup__form-content" novalidate>
-            <label class="popup__label">  
-              <input id="popup__form-name-image" type="text" class="popup__form popup__form-name-image" 
-                name="imageName" value="" placeholder="Название" minlength="2" maxlength="30" required>           
-              <span class="popup__form-error popup__form-name-image-error"></span>
-            </label>
-            <label class="popup__label">
-              <input id="popup__form-url-image" type="url" class="popup__form popup__form-url-image" 
-                name="urlName" value="" placeholder="Ссылка на место" required>
-              <span class="popup__form-error popup__form-url-image-error"></span>
-            </label>
-              <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
+        <form name="imageData" class="popup-information popap-card" novalidate>
+          <fieldset class="popup__form-content">
+            <input id="popup__form-name-image" type="text" class="popup__form popup__form-name-image" 
+              name="imageName" value="" placeholder="Название" minlength="2" maxlength="30" required>           
+            <span class="popup__form-error popup__form-name-image-error"></span>
+            <input id="popup__form-url-image" type="url" class="popup__form popup__form-url-image" 
+              name="urlName" value="" placeholder="Ссылка на место" required>
+            <span class="popup__form-error popup__form-url-image-error"></span>
+            <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
           </fieldset>
         </form>
       </div>
