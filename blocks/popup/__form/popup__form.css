@@ -9,9 +9,10 @@
   margin: auto;
   padding:  0;
   box-sizing: border-box;
+  position: relative;
 }
 
-/* .popup__form:focus {
+.popup__form:focus {
   outline: 2px solid #00BFFF;
   border-radius: 2px;
 }
@@ -19,7 +20,7 @@
  .popup__form:invalid {
   outline: none;
   border-bottom: 1px solid #ff0000;
-} */
+}
 
 @media screen and ( max-width: 530px) {
   .popup__form {

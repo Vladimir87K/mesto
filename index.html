@@ -64,12 +64,16 @@
         <h2 class="popup__title">Новое место</h2>
         <form name="imageData" class="popup-information popap-card">
           <fieldset class="popup__form-content" novalidate>
+            <label class="popup__label">  
               <input id="popup__form-name-image" type="text" class="popup__form popup__form-name-image" 
                 name="imageName" value="" placeholder="Название" minlength="2" maxlength="30" required>           
               <span class="popup__form-error popup__form-name-image-error"></span>
+            </label>
+            <label class="popup__label">
               <input id="popup__form-url-image" type="url" class="popup__form popup__form-url-image" 
                 name="urlName" value="" placeholder="Ссылка на место" required>
               <span class="popup__form-error popup__form-url-image-error"></span>
+            </label>
               <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
           </fieldset>
         </form>
