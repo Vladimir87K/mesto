@@ -6,7 +6,9 @@ const popupImg = document.querySelector('.popup-image');             // форм
 const formProfil = document.querySelector('.popup-information');   // форма информации профиля
 const formCard = document.querySelector('.popap-card');             // форма информации карточек
 
-const	openPopapProfilButton = document.querySelector('.profil-content__btn'); // Кнопк для показа профиля
+const openPopupCardButton = document.querySelector('.profil__btn');           //кнопка окна добавления карточки 
+const	openPopapProfilButton = document.querySelector('.profil-content__btn'); // Кнопк для показа профиля 
+const	closePopupButtons = document.querySelectorAll('.popup__container-btn'); // Кнопки для зарытия всех окон попапов 
 
 const nameInput = document.querySelector('.popup__form-name');						//	введение ФИО пользователя
 const jobInput = document.querySelector('.popup__form-profetional');			//	введение профессии пользователя
@@ -60,6 +62,18 @@ const initialCards = [
   },
 ];
 
+function closePopupByEscape(event) {                      // онределение клавишы Esc  и закрытие попапа
+  if (event.code == 'Escape') {
+  closePopup();
+  }
+}
+function hidePopup(event) {
+  if (event.target.classList.contains('popup_opened') 
+    || event.target.classList.contains('popup__container-btn')) {
+      closePopup();
+    }
+}
+
 function openPopupProfil(item) {
 	nameInput.value = userName.textContent;			    //	занесение данных пользователя
 	jobInput.value = userJob.textContent;				    //	с полей профиля в поля формы попапа
@@ -68,11 +82,14 @@ function openPopupProfil(item) {
 
 function openPopup(item) {                        // открытие попапа карточки
   item.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEscape); //слушатель нажатия на клавишу
+  item.addEventListener('mousedown', hidePopup);
 }
 
 function closePopup() {
 	popups.forEach(popup => {                 //закрытие любого попапа крестиком
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEscape); // снятие слушателя нажатия на клавишу
   }) 
 }
 
@@ -90,6 +107,10 @@ function creatCard(el) {
   newCardImg.alt = el.name;                                               // сознаие alt картинки
   newCard.querySelector('.card__title').textContent = el.name;            // заголовок карточки
   
+  likeCard(newCard);                                               // реакция на нажатие сердечка
+  deleteCard(newCard);                                             // реакция на нажатие корзины
+  revealCardImgPopap(newCard);                                     // реакция на нажатие картинки 
+
   return newCard;
 }
 
@@ -112,45 +133,47 @@ function addNewCard(event) {                                                // �
 }
 
 function removeCard(event) {                                  // удаление карточки
-  const card = event.closest('.card');
+  const card = event.target.closest('.card');
   card.remove();
 }
 
-function toggleLikeCard(event) {                                  // активация лайка
-  event.classList.toggle('card__like_active');
+function deleteCard(card) {
+  card.querySelector('.card__delete').addEventListener('click', removeCard);
 }
 
-function openPopapImgAction(evt) {          
-  console.log(evt.src);                      // открытие попапа-картинки с присваиванием изображения и подписи
-  popupImageTitle.textContent = evt.alt;
-  popupImage.src = evt.src;
-  popupImage.alt = evt.alt;
+function toggleLikeCard(event) {                                  // активация лайка
+  event.target.classList.toggle('card__like_active');
+}
+
+function likeCard(card) {                                       // реакция на нажатие лайка
+  card.querySelector('.card__like').addEventListener('click', toggleLikeCard);
+}
+
+function openPopapImgAction(evt) {                              // открытие попапа-картинки с присваиванием изображения и подписи
+  popupImageTitle.textContent = evt.target.alt;
+  popupImage.src = evt.target.src;
+  popupImage.alt = evt.target.alt;
   openPopup(popupImg);
 }
+
+function revealCardImgPopap(card) {                                           // реакция на нажатие картинки 
+  card.querySelector('.card__img').addEventListener('click', openPopapImgAction); 
+} 
 
 formProfil.addEventListener('submit', handleProfileFormSubmit);      // слушатель событий (отправки) формы профиля
 formCard.addEventListener('submit', addNewCard);              // слушатель событий (отправка) новой карточки
 
 initialCards.map(renderInitialCards);
 
-document.body.addEventListener('click', (event) => {
+openPopapProfilButton.addEventListener('click', () => {openPopupProfil(popupProfil)});     //обработчик событий на кнопке показа попапа)
+openPopupCardButton.addEventListener('click', () => {openPopup(popupCard)});   //обработчик событий на кнопке попапа картинок 
+
+/* document.body.addEventListener('click', (event) => {
   if (event.target.classList.contains('popup') || event.target.classList.contains('popup__container-btn')) {
     closePopup();
-  } else if (event.target.classList.contains('card__like')) {
-    toggleLikeCard(event.target);
-  } else if (event.target.classList.contains('card__delete')){
-    removeCard(event.target);
-  } else if (event.target.classList.contains('card__img')) {
-    openPopapImgAction(event.target);
   } else if (event.target.classList.contains('profil__btn')) {
     openPopup(popupCard);
   } else if (event.target.classList.contains('profil-content__btn')) {
     openPopupProfil(popupProfil);
   }
-})
-
-document.body.addEventListener('keydown', (event) =>{
-    if (event.code == 'Escape') {
-    closePopup();
-    }
-})
+}) */
