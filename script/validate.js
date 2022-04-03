@@ -13,14 +13,14 @@ function hideInputError(formElement, inputElement, config) { //скрывает 
 }
 
 function isValid(formElement, inputElement, config) {        // проверяет валидность поля, вызывает showInputError и hideInputError
-  if (!inputElement.validity.valid) {                // проверка валидности введенной информации
+  if (!inputElement.validity.valid) {                        // проверка валидности введенной информации
     showInputError(formElement, inputElement ,inputElement.validationMessage, config);
   } else {
     hideInputError(formElement, inputElement, config);
   }
 }
 
-function setEventListener(formElement, config) {                // поиск полей ввода в филдсете
+function setEventListener(formElement, config) {             // поиск полей ввода в филдсете
   const inputList = Array.from(formElement.querySelectorAll(config.inputElement));
   const buttonElement = formElement.querySelector(config.buttonElement);
   toggleButtonState(inputList, buttonElement, config);
@@ -58,7 +58,6 @@ function toggleButtonState(inputList, buttonElement, config) {  // включе�
   }
 }
 
-// enableValidation();
 enableValidation({
   formElement: '.popup__form-content',
   inputElement: '.popup__form',

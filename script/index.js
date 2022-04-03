@@ -67,10 +67,20 @@ function closePopupByEscape(event) {                      // онределен�
   closePopup();
   }
 }
-function hidePopup(event) {
+function hidePopup(event) {                               // нажатие на оверлей и крестик
   if (event.target.classList.contains('popup_opened') 
     || event.target.classList.contains('popup__container-btn')) {
       closePopup();
+    }
+}
+
+function turnOffButton(item) {
+  if (item.classList.contains('popup-image')){
+    return;
+  }else if (item.querySelector('.popup__form').value == '') {  
+    const buttonElement = item.querySelector('.popup__form-save')
+    buttonElement.setAttribute('disabled', 'disabled'); 
+    buttonElement.classList.add('popup__form-save_disable')
     }
 }
 
@@ -82,14 +92,17 @@ function openPopupProfil(item) {
 
 function openPopup(item) {                        // открытие попапа карточки
   item.classList.add('popup_opened');
+  turnOffButton(item);
   document.addEventListener('keydown', closePopupByEscape); //слушатель нажатия на клавишу
-  item.addEventListener('mousedown', hidePopup);
+  item.addEventListener('mousedown', hidePopup);  // слушатель нажатия на оверлей и крестик
+
 }
 
 function closePopup() {
 	popups.forEach(popup => {                 //закрытие любого попапа крестиком
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEscape); // снятие слушателя нажатия на клавишу
+    popup.removeEventListener('mousedown', hidePopup);
   }) 
 }
 
