@@ -74,14 +74,10 @@ function hidePopup(event) {                               // нажатие на
     }
 }
 
-function turnOffButton(item) {
-  if (item.classList.contains('popup-image')){
-    return;
-  }else if (item.querySelector('.popup__form').value == '') {  
+function turnOffButton(item) {                             //инактивация кнопки при открытии попапа картинки
     const buttonElement = item.querySelector('.popup__form-save')
     buttonElement.setAttribute('disabled', 'disabled'); 
     buttonElement.classList.add('popup__form-save_disable')
-    }
 }
 
 function openPopupProfil(item) {
@@ -92,7 +88,6 @@ function openPopupProfil(item) {
 
 function openPopup(item) {                        // открытие попапа карточки
   item.classList.add('popup_opened');
-  turnOffButton(item);
   document.addEventListener('keydown', closePopupByEscape); //слушатель нажатия на клавишу
   item.addEventListener('mousedown', hidePopup);  // слушатель нажатия на оверлей и крестик
 
@@ -179,14 +174,7 @@ formCard.addEventListener('submit', addNewCard);              // слушате�
 initialCards.map(renderInitialCards);
 
 openPopapProfilButton.addEventListener('click', () => {openPopupProfil(popupProfil)});     //обработчик событий на кнопке показа попапа)
-openPopupCardButton.addEventListener('click', () => {openPopup(popupCard)});   //обработчик событий на кнопке попапа картинок 
-
-/* document.body.addEventListener('click', (event) => {
-  if (event.target.classList.contains('popup') || event.target.classList.contains('popup__container-btn')) {
-    closePopup();
-  } else if (event.target.classList.contains('profil__btn')) {
-    openPopup(popupCard);
-  } else if (event.target.classList.contains('profil-content__btn')) {
-    openPopupProfil(popupProfil);
-  }
-}) */
+openPopupCardButton.addEventListener('click', () => {                                      //обработчик событий на кнопке попапа картинок 
+  openPopup(popupCard);
+  turnOffButton(popupCard);
+});
