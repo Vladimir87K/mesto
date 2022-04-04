@@ -74,6 +74,11 @@ function hidePopup(event) {                               // нажатие на
     }
 }
 
+function hideError(item) {
+  item. querySelectorAll('.popup__form-error').forEach(e => e.textContent = '');
+  item.querySelectorAll('.popup__form').forEach(e => e.classList.remove('popup__form_type_error')); 
+}
+
 function turnOffButton(item) {                             //инактивация кнопки при открытии попапа картинки
     const buttonElement = item.querySelector('.popup__form-save')
     buttonElement.setAttribute('disabled', 'disabled'); 
@@ -173,8 +178,12 @@ formCard.addEventListener('submit', addNewCard);              // слушате�
 
 initialCards.map(renderInitialCards);
 
-openPopapProfilButton.addEventListener('click', () => {openPopupProfil(popupProfil)});     //обработчик событий на кнопке показа попапа)
-openPopupCardButton.addEventListener('click', () => {                                      //обработчик событий на кнопке попапа картинок 
+openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
+  openPopupProfil(popupProfil);
+  hideError(popupProfil);
+}); 
+openPopupCardButton.addEventListener('click', () => {      //обработчик событий на кнопке попапа картинок 
   openPopup(popupCard);
   turnOffButton(popupCard);
+  hideError(popupCard)
 });
