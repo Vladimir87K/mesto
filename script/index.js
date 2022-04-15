@@ -169,14 +169,14 @@ function openPopapImgAction(evt) {                              // открыт�
   openPopup(popupImg);
 }
 
-function revealCardImgPopap(card) {                                           // реакция на нажатие картинки 
+/* function revealCardImgPopap(card) {                                           // реакция на нажатие картинки 
   card.querySelector('.card__img').addEventListener('click', openPopapImgAction); 
-} 
+}  */
 
 formProfil.addEventListener('submit', handleProfileFormSubmit);      // слушатель событий (отправки) формы профиля
 formCard.addEventListener('submit', addNewCard);              // слушатель событий (отправка) новой карточки
 
-initialCards.map(renderInitialCards);
+//initialCards.map(renderInitialCards);
 
 openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
   openPopupProfil(popupProfil);
