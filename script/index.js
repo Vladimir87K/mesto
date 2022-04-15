@@ -150,9 +150,9 @@ function removeCard(event) {                                  // удалени�
   card.remove();
 }
 
-function deleteCard(card) {
+/* function deleteCard(card) {
   card.querySelector('.card__delete').addEventListener('click', removeCard);
-}
+} */
 
 function toggleLikeCard(event) {                                  // активация лайка
   event.target.classList.toggle('card__like_active');
@@ -162,12 +162,12 @@ function likeCard(card) {                                       // реакци�
   card.querySelector('.card__like').addEventListener('click', toggleLikeCard);
 }
 
-function openPopapImgAction(evt) {                              // открытие попапа-картинки с присваиванием изображения и подписи
+/* function openPopapImgAction(evt) {                              // открытие попапа-картинки с присваиванием изображения и подписи
   popupImageTitle.textContent = evt.target.alt;
   popupImage.src = evt.target.src;
   popupImage.alt = evt.target.alt;
   openPopup(popupImg);
-}
+} */
 
 /* function revealCardImgPopap(card) {                                           // реакция на нажатие картинки 
   card.querySelector('.card__img').addEventListener('click', openPopapImgAction); 

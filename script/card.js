@@ -62,13 +62,29 @@ class Card {
 
   _setEventListeners() {
     this._element.querySelector('.card__like').addEventListener('click', () => {
-      this._toggleLike()});
-    this._element.querySelector('.card__delete').addEventListener('click', () => {console.log('click delete!!')});
-    this._element.querySelector('.card__img').addEventListener('click', () => {console.log('click imgage!!!')})
+      this._toggleLike();
+    });
+    this._element.querySelector('.card__delete').addEventListener('click', () => {
+      this._deleteCard();
+    });
+    this._element.querySelector('.card__img').addEventListener('click', () => {
+      this._openPopapImgAction();
+    });
   }
 
   _toggleLike() {                             //лайки
     this._element.querySelector('.card__like').classList.toggle('card__like_active');
+  }
+
+  _deleteCard() {                             //удаление карточки
+    this._element.remove();
+  }
+
+  _openPopapImgAction() {                 //открытие попапа - картинки
+    popupImageTitle.textContent = this._name;
+    popupImage.src = this._link;
+    popupImage.alt = this._name;
+    openPopup(popupImg);
   }
 }
 
