@@ -8,7 +8,6 @@ const argumentsValidation = {
   inputElement: '.popup__form',
   buttonElement: '.popup__form-save',
   inactiveButtonClass: 'popup__form-save_disable',
-  inputErrorClass: 'popup__form_type_error',
   errorClass: 'popup__form-error_action'
 };
 
@@ -78,75 +77,6 @@ function handleProfileFormSubmit (evt) {
 	closePopup();                                   // закрытие попапа
 }
 
-/* function creatCard(el) {
-  const newCard = cardTemplate.content.firstElementChild.cloneNode(true); //создание копии темплате
-  const newCardImg = newCard.querySelector('.card__img')
-  newCardImg.src = el.link;                                               // перенос ссылки в созданную карточку
-  newCardImg.alt = el.name;                                               // сознаие alt картинки
-  newCard.querySelector('.card__title').textContent = el.name;            // заголовок карточки
-  
-  likeCard(newCard);                                               // реакция на нажатие сердечка
-  deleteCard(newCard);                                             // реакция на нажатие корзины
-  revealCardImgPopap(newCard);                                     // реакция на нажатие картинки 
-
-  return newCard;
-}
-
-function renderInitialCards(element) {
-  const newCard = creatCard(element);
-  cards.prepend(newCard);            */                          // добавление элемента на страницу
-//}
-
-/* function addNewCard(event) {                                                // добавление данных новой карточки
-  event.preventDefault();
-  const element = {};
-  element.name = popupCardTitile.value;
-  element.link = popupCardUrl.value;
-
-  closePopup();
-  renderInitialCards(element)
-
-  popupCardTitile.value = '';
-  popupCardUrl.value = '';
-}
-
-function removeCard(event) {                                  // удаление карточки
-  const card = event.target.closest('.card');
-  card.remove();
-}
- */
-/* function deleteCard(card) {
-  card.querySelector('.card__delete').addEventListener('click', removeCard);
-} */
-
-/* function toggleLikeCard(event) {                                  // активация лайка
-  event.target.classList.toggle('card__like_active');
-}
-
-function likeCard(card) {                                       // реакция на нажатие лайка
-  card.querySelector('.card__like').addEventListener('click', toggleLikeCard);
- */ //}
-
-/* function openPopapImgAction(evt) {                              // открытие попапа-картинки с присваиванием изображения и подписи
-  popupImageTitle.textContent = evt.target.alt;
-  popupImage.src = evt.target.src;
-  popupImage.alt = evt.target.alt;
-  openPopup(popupImg);
-} */
-
-/* function revealCardImgPopap(card) {                                           // реакция на нажатие картинки 
-  card.querySelector('.card__img').addEventListener('click', openPopapImgAction); 
-}  */
-
-
-
-
-//initialCards.map(renderInitialCards);
-
-
-
-
-
 function addingCreateCard(data) {             //создание и добавление новой карточки
   const card = new Card(data);                //создание новой Card
   const cardElement = card.generateCard();    //инициализация создания и выедения новой карточки
@@ -157,7 +87,7 @@ initialCards.forEach((data) => {                 //перебор базы да�
   addingCreateCard(data)                      
 })
 
-function addNewCard(event) {
+function addNewCard(event) {                    // создание карточки пользователем
   event.preventDefault();
   const element = {};
   element.name = elements.popupCardTitile.value;
@@ -181,56 +111,4 @@ elements.openPopupCardButton.addEventListener('click', () => {      //обраб
 });
 
 elements.formProfil.addEventListener('submit', handleProfileFormSubmit);      // слушатель событий (отправки) формы профиля
-
 elements.formCard.addEventListener('submit', addNewCard);              // слушатель событий (отправка) новой карточки
-
-
-
-
-/* function hasInvalidInput(inputList) {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  })
-} */
-
-/* function toggleButtonState(inputList, buttonElement, config) {  // включение\выключение кнопки
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.disabled = true;
-  } else {
-    buttonElement.classList.remove(config.inactiveButtonClass);
-    buttonElement.disabled = false;
-  }
-} */
-
-/* function setEventListener(formElement, config) {             // поиск полей ввода в филдсете
-  const inputList = Array.from(formElement.querySelectorAll(config.inputElement));
-  const buttonElement = formElement.querySelector(config.buttonElement);
- // toggleButtonState(inputList, buttonElement, config);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      const formControl = new FormValidator(config, inputElement);
-      formControl.isValid();
- //     toggleButtonState(inputList, buttonElement, config);
-    })
-  });
-}
-
-function enableValidation(config) {                          // поиск всех филдсетов
-  const formList = Array.from(document.querySelectorAll(config.formElement));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    setEventListener(formElement, config);
-  });
-}
-
-enableValidation({
-  formElement: '.popup__form-content',
-  inputElement: '.popup__form',
-  buttonElement: '.popup__form-save',
-  inactiveButtonClass: 'popup__form-save_disable',
-  inputErrorClass: 'popup__form_type_error',
-  errorClass: 'popup__form-error_action'
-}); */
