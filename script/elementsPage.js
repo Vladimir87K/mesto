@@ -3,8 +3,8 @@ export const popupProfil = document.querySelector('.popup-profil')           // 
 export const popupCard = document.querySelector('.popup-card');         //фон попапа окна для добавления катринок
 export const popupImg = document.querySelector('.popup-image');             // форма попапа картинки
 
-export const formProfil = document.querySelector('.popup-information');   // форма информации профиля
-export const formCard = document.querySelector('.popap-card');             // форма информации карточек
+export const formProfil = document.querySelector('.popup-profil-form');   // форма информации профиля
+export const formCard = document.querySelector('.popap-card-form');             // форма информации карточек
 
 export const openPopupCardButton = document.querySelector('.profil__btn');           //кнопка окна добавления карточки 
 export const	openPopapProfilButton = document.querySelector('.profil-content__btn'); // Кнопк для показа профиля 

@@ -1,25 +1,27 @@
 import * as elements from './elementsPage.js';
 import {initialCards} from './initialCard.js';
-import {Card}  from './card.js';
-import {FormValidator} from './formValidate.js';
+import {Card}  from './Card.js';
+import {FormValidator} from './FormValidator.js';
 
-const argumentsValidation = {
-  formElement: '.popup__form-content',
+const formValidators = {};
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formElement));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');  // получаем данные из атрибута `name` у формы
+    formValidators[formName] = validator;               // вот тут в объект записываем под именем формы
+    validator.enableValidation();
+  });
+};
+
+enableValidation({
+  formElement: '.popup-information',
   inputElement: '.popup__form',
   buttonElement: '.popup__form-save',
   inactiveButtonClass: 'popup__form-save_disable',
   errorClass: 'popup__form-error_action'
-};
-
-function searchFormElement(event) {
-  const inputList = Array.from(event.querySelectorAll(argumentsValidation.inputElement));
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      const formControl = new FormValidator(argumentsValidation, inputElement);
-      formControl.isValid();
-    })
-  });
-}
+});
 
 function closePopupByEscape(event) {                      // онределение клавишы Esc  и закрытие попапа
   if (event.code == 'Escape') {
@@ -33,17 +35,6 @@ function hidePopup(event) {                               // нажатие на
     }
 }
 
-function hideError(item) {                                 // удаление значения предыдущей ошибки при новом открытии попапа
-  item. querySelectorAll('.popup__form-error').forEach(e => e.textContent = '');
-  item.querySelectorAll('.popup__form').forEach(e => e.classList.remove('popup__form_type_error')); 
-}
-
-function turnOffButton(item) {                             //инактивация кнопки при открытии попапа картинки
-    const buttonElement = item.querySelector('.popup__form-save')
-    buttonElement.setAttribute('disabled', 'disabled'); 
-    buttonElement.classList.add('popup__form-save_disable')
-}
-
 function openPopupProfil(item) {
 	elements.nameInput.value = elements.userName.textContent;			    //	занесение данных пользователя
 	elements.jobInput.value = elements.userJob.textContent;				    //	с полей профиля в поля формы попапа
@@ -52,6 +43,7 @@ function openPopupProfil(item) {
 
 function openPopupCard (item) {                                     // очищение полей попапа при очередном вызове
   item.querySelectorAll('.popup__form').forEach(e => e.value = '');
+  formValidators['imageData'].resetValidation();
   openPopup(item);
 }
 
@@ -59,7 +51,6 @@ export function openPopup(item) {                        // открытие п�
   item.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEscape); //слушатель нажатия на клавишу
   item.addEventListener('mousedown', hidePopup);  // слушатель нажатия на оверлей и крестик
-  hideError(item);
 }
 
 function closePopup() {
@@ -77,14 +68,19 @@ function handleProfileFormSubmit (evt) {
 	closePopup();                                   // закрытие попапа
 }
 
-function addingCreateCard(data) {             //создание и добавление новой карточки
-  const card = new Card(data);                //создание новой Card
-  const cardElement = card.generateCard();    //инициализация создания и выедения новой карточки
+function createCard(data) {                    //создание новой карточки
+  const card = new Card(data);    
+  const cardElement = card.generateCard(); 
+  return cardElement
+}
+
+function addingCard(data) {             //создание и добавление новой карточки
+  const cardElement = createCard(data);    
   document.querySelector('.cards').prepend(cardElement);  //добавление карточки в DOM
 }
 
 initialCards.forEach((data) => {                 //перебор базы данных
-  addingCreateCard(data)                      
+  addingCard(data)                      
 })
 
 function addNewCard(event) {                    // создание карточки пользователем
@@ -94,20 +90,15 @@ function addNewCard(event) {                    // создание карточ
   element.link = elements.popupCardUrl.value;
 
   closePopup();
-  addingCreateCard(element);
+  addingCard(element);
 }
 
 elements.openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
   openPopupProfil(elements.popupProfil);
-  hideError(elements.popupProfil);
-  searchFormElement(elements.popupProfil);
 }); 
 
 elements.openPopupCardButton.addEventListener('click', () => {      //обработчик событий на кнопке попапа картинок 
   openPopupCard(elements.popupCard);
-  turnOffButton(elements.popupCard);
-  hideError(elements.popupCard);
-  searchFormElement(elements.popupCard);
 });
 
 elements.formProfil.addEventListener('submit', handleProfileFormSubmit);      // слушатель событий (отправки) формы профиля
