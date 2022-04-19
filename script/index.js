@@ -68,19 +68,19 @@ function handleProfileFormSubmit (evt) {
 	closePopup();                                   // закрытие попапа
 }
 
-function createCard(data) {                    //создание новой карточки
-  const card = new Card(data);    
+function createCard(data, templateSelector) {                    //создание новой карточки
+  const card = new Card(data, templateSelector);    
   const cardElement = card.generateCard(); 
   return cardElement
 }
 
-function addingCard(data) {             //создание и добавление новой карточки
-  const cardElement = createCard(data);    
+function addingCard(data, templateSelector) {             //создание и добавление новой карточки
+  const cardElement = createCard(data, templateSelector);    
   document.querySelector('.cards').prepend(cardElement);  //добавление карточки в DOM
 }
 
 initialCards.forEach((data) => {                 //перебор базы данных
-  addingCard(data)                      
+  addingCard(data, '.card-template');
 })
 
 function addNewCard(event) {                    // создание карточки пользователем
@@ -90,7 +90,7 @@ function addNewCard(event) {                    // создание карточ
   element.link = elements.popupCardUrl.value;
 
   closePopup();
-  addingCard(element);
+  addingCard(element, '.card-template');
 }
 
 elements.openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)

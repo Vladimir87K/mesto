@@ -2,13 +2,14 @@ import * as elements from './elementsPage.js';
 import {openPopup} from './index.js';
 
 export class Card {
-  constructor(data) {                       //введение в в класс внешних переменных
+  constructor(data, templateSelector) {                       //введение в в класс внешних переменных
     this._name = data.name;
     this._link = data.link;
+    this._selector = templateSelector;
   }
 
   _getTemplate() {                          //поиск и возврат клона темплайт-элемента
-    const cardElement = elements.cardTemplate.content.firstElementChild.cloneNode(true);
+    const cardElement = document.querySelector(`${this._selector}`).content.firstElementChild.cloneNode(true);
     return cardElement
   }
 
