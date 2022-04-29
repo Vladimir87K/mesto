@@ -2,6 +2,7 @@ import * as elements from './elementsPage.js';
 import {initialCards} from './initialCard.js';
 import {Card}  from './Card.js';
 import {FormValidator} from './FormValidator.js';
+import Popup from './Popup.js';
 
 const formValidators = {};
 
@@ -23,11 +24,11 @@ enableValidation({
   errorClass: 'popup__form-error_action'
 });
 
-function closePopupByEscape(event) {                      // онределение клавишы Esc  и закрытие попапа
+/* function closePopupByEscape(event) {                      // онределение клавишы Esc  и закрытие попапа
   if (event.code == 'Escape') {
   closePopup();
   }
-}
+} */
 function hidePopup(event) {                               // нажатие на оверлей и крестик
   if (event.target.classList.contains('popup_opened') 
     || event.target.classList.contains('popup__container-btn')) {
@@ -49,14 +50,14 @@ function openPopupCard (item) {                                     // очищ�
 
 export function openPopup(item) {                        // открытие попапа карточки
   item.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByEscape); //слушатель нажатия на клавишу
+ // document.addEventListener('keydown', closePopupByEscape); //слушатель нажатия на клавишу
   item.addEventListener('mousedown', hidePopup);  // слушатель нажатия на оверлей и крестик
 }
 
 function closePopup() {
 	elements.popups.forEach(popup => {                 //закрытие любого попапа крестиком
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupByEscape); // снятие слушателя нажатия на клавишу
+  //  document.removeEventListener('keydown', closePopupByEscape); // снятие слушателя нажатия на клавишу
     popup.removeEventListener('mousedown', hidePopup);
   }) 
 }
@@ -94,7 +95,10 @@ function addNewCard(event) {                    // создание карточ
 }
 
 elements.openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
-  openPopupProfil(elements.popupProfil);
+  //openPopupProfil(elements.popupProfil);
+  const popup = new Popup('.popup-profil');
+  popup.generatePopup();
+  popup.open();
 }); 
 
 elements.openPopupCardButton.addEventListener('click', () => {      //обработчик событий на кнопке попапа картинок 

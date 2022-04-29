@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "Проект создан в рамках программы обучения __ЯндексПрактикума__",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vladimir87K/mesto.git"
+  },
+  "author": "Vladimir Kuklin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vladimir87K/mesto/issues"
+  },
+  "homepage": "https://github.com/Vladimir87K/mesto#readme"
+}
