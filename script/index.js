@@ -3,6 +3,7 @@ import {initialCards} from './initialCard.js';
 import {Card}  from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import Popup from './Popup.js';
+import Section from './Section.js';
 
 const formValidators = {};
 
@@ -80,9 +81,9 @@ function addingCard(data, templateSelector) {             //создание и 
   document.querySelector('.cards').prepend(cardElement);  //добавление карточки в DOM
 }
 
-initialCards.forEach((data) => {                 //перебор базы данных
+/* initialCards.forEach((data) => {                 //перебор базы данных
   addingCard(data, '.card-template');
-})
+}) */
 
 function addNewCard(event) {                    // создание карточки пользователем
   event.preventDefault();
@@ -107,3 +108,15 @@ elements.openPopupCardButton.addEventListener('click', () => {      //обраб
 
 elements.formProfil.addEventListener('submit', handleProfileFormSubmit);      // слушатель событий (отправки) формы профиля
 elements.formCard.addEventListener('submit', addNewCard);              // слушатель событий (отправка) новой карточки
+
+const cardList = new Section ({
+  item : initialCards,
+  renderer : (item) => {
+    const card = new Card(item, '.card-template');
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  }
+}, '.cards'
+);
+
+cardList.showAllElement();

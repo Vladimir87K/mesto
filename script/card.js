@@ -2,10 +2,11 @@ import * as elements from './elementsPage.js';
 import {openPopup} from './index.js';
 
 export class Card {
-  constructor(data, templateSelector) {                       //введение в в класс внешних переменных
+  constructor(data, templateSelector, handleCardClick) {                       //введение в в класс внешних переменных
     this._name = data.name;
     this._link = data.link;
     this._selector = templateSelector;
+    this._handleCardClick = handleCardClick; //функция, открывает попап с картинкой при нажатии
   }
 
   _getTemplate() {                          //поиск и возврат клона темплайт-элемента
