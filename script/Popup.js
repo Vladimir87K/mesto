@@ -1,6 +1,7 @@
 export default class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector;
+    console.log(this._popupSelector);
   }
 
   generatePopup() {
@@ -31,10 +32,6 @@ export default class Popup {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.popup__form-save').addEventListener('click', (event) => {
-      event.preventDefault;
-      console.log('click!!! :)-');
-    });
     this._element.querySelector('.popup__container-btn').addEventListener('click', () => {
       this.close();
       console.log('double click!!!')
@@ -44,6 +41,6 @@ export default class Popup {
     });
     document.addEventListener('mousedown', (event) => {
       this._handleOverleyClose(event);
-    })
+    });
   }
 }
