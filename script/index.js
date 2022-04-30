@@ -4,6 +4,7 @@ import {Card}  from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import Popup from './Popup.js';
 import Section from './Section.js';
+import PopupWithImage from './PopupWithImage.js';
 
 const formValidators = {};
 
@@ -30,12 +31,12 @@ enableValidation({
   closePopup();
   }
 } */
-function hidePopup(event) {                               // нажатие на оверлей и крестик
+/* function hidePopup(event) {                               // нажатие на оверлей и крестик
   if (event.target.classList.contains('popup_opened') 
     || event.target.classList.contains('popup__container-btn')) {
       closePopup();
     }
-}
+} */
 
 function openPopupProfil(item) {
 	elements.nameInput.value = elements.userName.textContent;			    //	занесение данных пользователя
@@ -52,14 +53,14 @@ function openPopupCard (item) {                                     // очищ�
 export function openPopup(item) {                        // открытие попапа карточки
   item.classList.add('popup_opened');
  // document.addEventListener('keydown', closePopupByEscape); //слушатель нажатия на клавишу
-  item.addEventListener('mousedown', hidePopup);  // слушатель нажатия на оверлей и крестик
+  //item.addEventListener('mousedown', hidePopup);  // слушатель нажатия на оверлей и крестик
 }
 
 function closePopup() {
 	elements.popups.forEach(popup => {                 //закрытие любого попапа крестиком
     popup.classList.remove('popup_opened');
   //  document.removeEventListener('keydown', closePopupByEscape); // снятие слушателя нажатия на клавишу
-    popup.removeEventListener('mousedown', hidePopup);
+  //  popup.removeEventListener('mousedown', hidePopup);
   }) 
 }
 
@@ -70,22 +71,22 @@ function handleProfileFormSubmit (evt) {
 	closePopup();                                   // закрытие попапа
 }
 
-function createCard(data, templateSelector) {                    //создание новой карточки
+/* function createCard(data, templateSelector) {                    //создание новой карточки
   const card = new Card(data, templateSelector);    
   const cardElement = card.generateCard(); 
   return cardElement
-}
+} */
 
-function addingCard(data, templateSelector) {             //создание и добавление новой карточки
+/* function addingCard(data, templateSelector) {             //создание и добавление новой карточки
   const cardElement = createCard(data, templateSelector);    
   document.querySelector('.cards').prepend(cardElement);  //добавление карточки в DOM
 }
-
+ */
 /* initialCards.forEach((data) => {                 //перебор базы данных
   addingCard(data, '.card-template');
 }) */
 
-function addNewCard(event) {                    // создание карточки пользователем
+/* function addNewCard(event) {                    // создание карточки пользователем
   event.preventDefault();
   const element = {};
   element.name = elements.popupCardTitile.value;
@@ -93,7 +94,7 @@ function addNewCard(event) {                    // создание карточ
 
   closePopup();
   addingCard(element, '.card-template');
-}
+} */
 
 elements.openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
   //openPopupProfil(elements.popupProfil);
@@ -107,12 +108,19 @@ elements.openPopupCardButton.addEventListener('click', () => {      //обраб
 });
 
 elements.formProfil.addEventListener('submit', handleProfileFormSubmit);      // слушатель событий (отправки) формы профиля
-elements.formCard.addEventListener('submit', addNewCard);              // слушатель событий (отправка) новой карточки
+//elements.formCard.addEventListener('submit', addNewCard);              // слушатель событий (отправка) новой карточки
 
 const cardList = new Section ({
   item : initialCards,
   renderer : (item) => {
-    const card = new Card(item, '.card-template');
+    const card = new Card({
+      data : item,
+      handleCardClick : (link, name) => {
+        const popup = new PopupWithImage('.popup-image', link, name)
+        popup.generatePopup();
+        popup.open();
+        }
+      }, '.card-template',);
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
   }

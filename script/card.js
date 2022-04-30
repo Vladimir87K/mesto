@@ -1,12 +1,12 @@
 import * as elements from './elementsPage.js';
-import {openPopup} from './index.js';
+//import {openPopup} from './index.js';
 
 export class Card {
-  constructor(data, templateSelector, handleCardClick) {                       //введение в в класс внешних переменных
+  constructor({data, handleCardClick }, templateSelector) {       //введение в в класс внешних переменных
     this._name = data.name;
     this._link = data.link;
-    this._selector = templateSelector;
     this._handleCardClick = handleCardClick; //функция, открывает попап с картинкой при нажатии
+    this._selector = templateSelector;
   }
 
   _getTemplate() {                          //поиск и возврат клона темплайт-элемента
@@ -47,9 +47,9 @@ export class Card {
   }
 
   _openPopapImgAction() {                 //открытие попапа - картинки
-    elements.popupImageTitle.textContent = this._name;
+/*     elements.popupImageTitle.textContent = this._name;
     elements.popupImage.src = this._link;
-    elements.popupImage.alt = this._name;
-    openPopup(elements.popupImg);
+    elements.popupImage.alt = this._name; */
+    this._handleCardClick(this._link, this._name);
   }
 }

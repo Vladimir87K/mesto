@@ -3,15 +3,8 @@ export default class Popup {
     this._popupSelector = popupSelector;
   }
 
-  _getElement() {
-    console.log('так держать!');
-    this._popupElement = document.querySelector(this._popupSelector);
-    
-    return this._popupElement;
-  }
-
   generatePopup() {
-    this._element = this._getElement();
+    this._element = document.querySelector(this._popupSelector);
     this._setEventListeners();
 
     return this._element;
@@ -31,6 +24,12 @@ export default class Popup {
     }
   }
 
+  _handleOverleyClose(event) {
+    if (event.target.classList.contains('popup_opened')) {
+      this.close();
+    }
+  }
+
   _setEventListeners() {
     this._element.querySelector('.popup__form-save').addEventListener('click', (event) => {
       event.preventDefault;
@@ -42,6 +41,9 @@ export default class Popup {
     });
     document.addEventListener('keydown', (event) => {
       this._handleEscClose(event);
+    });
+    document.addEventListener('mousedown', (event) => {
+      this._handleOverleyClose(event);
     })
   }
 }
