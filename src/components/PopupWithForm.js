@@ -24,7 +24,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     this._resetInputForm();
-    console.log('мы закрылись!!!');
     this._element.removeEventListener('submit', (e) => {
       e.preventDefault();
       this._renderInput(this._getInputValues());

@@ -1,12 +1,12 @@
-import * as elements from './elementsPage.js';
-import {initialCards} from './initialCard.js';
-import {Card}  from './Card.js';
-import {FormValidator} from './FormValidator.js';
-import Popup from './Popup.js';
-import Section from './Section.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js'
+import './index.css';
+import * as elements from '../script/elementsPage.js';
+import {initialCards} from '../script/initialCard.js';
+import {Card}  from '../components/Card.js';
+import {FormValidator} from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js'
 
 const formValidators = {};
 
@@ -36,7 +36,6 @@ elements.openPopapProfilButton.addEventListener('click', () => {    //обраб
     popupSelector :'.popup-profil',
     renderInput : (item) => {
       const [userName, userJob] = item;
-      console.log(item);
       userInfo.setUserInfo(userName, userJob);
     }
   });

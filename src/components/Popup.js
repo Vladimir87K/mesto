@@ -1,7 +1,6 @@
 export default class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector;
-    console.log(this._popupSelector);
   }
 
   generatePopup() {
