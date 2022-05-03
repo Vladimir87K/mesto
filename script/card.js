@@ -1,5 +1,4 @@
 import * as elements from './elementsPage.js';
-//import {openPopup} from './index.js';
 
 export class Card {
   constructor({data, handleCardClick }, templateSelector) {       //введение в в класс внешних переменных
@@ -46,10 +45,7 @@ export class Card {
     this._element.remove();
   }
 
-  _openPopapImgAction() {                 //открытие попапа - картинки
-/*     elements.popupImageTitle.textContent = this._name;
-    elements.popupImage.src = this._link;
-    elements.popupImage.alt = this._name; */
+  _openPopapImgAction() {      
     this._handleCardClick(this._link, this._name);
   }
 }

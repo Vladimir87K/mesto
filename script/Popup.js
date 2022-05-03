@@ -36,10 +36,10 @@ export default class Popup {
       this.close();
       console.log('double click!!!')
     });
-    document.addEventListener('keydown', (event) => {
+    this._element.addEventListener('keydown', (event) => {
       this._handleEscClose(event);
     });
-    document.addEventListener('mousedown', (event) => {
+    this._element.closest('.popup').addEventListener('mousedown', (event) => {
       this._handleOverleyClose(event);
     });
   }
