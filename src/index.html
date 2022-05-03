@@ -9,13 +9,13 @@
 <body class="page">
   <header class="header">
     <a href="#" class="header__link">
-      <img src="<%require('./image/logo.svg')%>" alt="логотип Место" class="header__logo">
+      <img src="<%=require('./image/logo.svg')%>" alt="логотип Место" class="header__logo">
     </a>
   </header>
 
   <main class="main">
     <section class="profil">
-      <img src="./image/image.jpg" class="profil__avatar" alt="аватарка пользователь">
+      <img src="<%=require('./image/image.jpg')%>" class="profil__avatar" alt="аватарка пользователь">
       <div class="profil-content"> 
          <div class="profil-content__information">
           <h1 class="profil-content__name content-overflow">Жак-Ив Кусто</h1>
@@ -89,6 +89,5 @@
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <script src="./pages/index.js" type="module"></script>
 </body>
 </html>
