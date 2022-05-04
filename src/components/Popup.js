@@ -13,10 +13,16 @@ export default class Popup {
 
   open() {
     this._element.classList.add('popup_opened');
+    this._element.addEventListener('keydown', (event) => {
+      this._handleEscClose(event);
+    });
   }
 
   close() {
     this._element.classList.remove('popup_opened');
+    this._element.removeEventListener('keydown', (event) => {
+      this._handleEscClose(event);
+    });
   }
 
   _handleEscClose(event) {
@@ -35,9 +41,6 @@ export default class Popup {
     this._element.querySelector('.popup__container-btn').addEventListener('click', () => {
       this.close();
       console.log('double click!!!')
-    });
-    this._element.addEventListener('keydown', (event) => {
-      this._handleEscClose(event);
     });
     this._element.closest('.popup').addEventListener('mousedown', (event) => {
       this._handleOverleyClose(event);
