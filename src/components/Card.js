@@ -18,8 +18,9 @@ export class Card {
 
     this._setEventListeners();
 
-    this._element.querySelector('.card__img').src = this._link;
-    this._element.querySelector('.card__img').alt = this._name;
+    const image = this._element.querySelector('.card__img');
+    image.src = this._link;
+    image.alt = this._name;
     this._element.querySelector('.card__title').textContent = this._name
 
     return this._element;
@@ -33,7 +34,7 @@ export class Card {
       this._deleteCard();
     });
     this._element.querySelector('.card__img').addEventListener('click', () => {
-      this._openPopapImgAction();
+      this._handleCardClick(this._link, this._name);
     });
   }
 
@@ -43,9 +44,6 @@ export class Card {
 
   _deleteCard() {                             //удаление карточки
     this._element.remove();
-  }
-
-  _openPopapImgAction() {      
-    this._handleCardClick(this._link, this._name);
+    this._element = null;
   }
 }

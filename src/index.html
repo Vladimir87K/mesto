@@ -27,60 +27,7 @@
     </section>
 
     <section class="cards">
-      <template class="card-template">
-        <article class="card">
-          <img class="card__img" src="#" alt="#">
-          <div class="card__content content-overflow">
-            <h2 class="card__title content-overflow"></h2>
-            <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
-          </div>
-          <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
-        </article>
-      </template>
-    </section>
 
-    <section class="popup popup-profil">
-      <div class="popup__container">
-        <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="userData" class="popup-information popup-profil-form" novalidate>
-          <fieldset class="popup__form-content">
-            <input id="popup__form-name" type="text" class="popup__form popup__form-name" name="userName" 
-              value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
-            <span class="popup__form-error popup__form-name-error"></span>
-            <input id="popup__form-profetional" type="text" class="popup__form popup__form-profetional" 
-              name="userJob" value="Исследователь океана" minlength="2" maxlength="200" required>
-            <span class="popup__form-error popup__form-profetional-error"></span>
-            <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
-          </fieldset>
-        </form>
-      </div>
-    </section>
-
-    <section class="popup popup-card">
-      <div class="popup__container">
-        <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
-        <h2 class="popup__title">Новое место</h2>
-        <form name="imageData" class="popup-information popap-card-form" novalidate>
-          <fieldset class="popup__form-content">
-            <input id="popup__form-name-image" type="text" class="popup__form popup__form-name-image" 
-              name="imageName" value="" placeholder="Название" minlength="2" maxlength="30" required>           
-            <span class="popup__form-error popup__form-name-image-error"></span>
-            <input id="popup__form-url-image" type="url" class="popup__form popup__form-url-image" 
-              name="urlName" value="" placeholder="Ссылка на место" required>
-            <span class="popup__form-error popup__form-url-image-error"></span>
-            <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
-          </fieldset>
-        </form>
-      </div>
-    </section>
-
-    <section class="popup popup-image">
-      <div class="popup-image__container">
-        <img class="popup-image__img" src="#" alt="#">
-        <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
-        <h2 class="popup-image__title"></h2>
-      </div>
     </section>
 
   </main>
@@ -88,6 +35,63 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
+
+  <section class="popup popup-profil">
+    <div class="popup__container">
+      <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form name="userData" class="popup-information popup-profil-form" novalidate>
+        <fieldset class="popup__form-content">
+          <input id="popup__form-name" type="text" class="popup__form popup__form-name" name="userName" 
+            value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+          <span class="popup__form-error popup__form-name-error"></span>
+          <input id="popup__form-profetional" type="text" class="popup__form popup__form-profetional" 
+            name="userJob" value="Исследователь океана" minlength="2" maxlength="200" required>
+          <span class="popup__form-error popup__form-profetional-error"></span>
+          <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
+  <section class="popup popup-card">
+    <div class="popup__container">
+      <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form name="imageData" class="popup-information popap-card-form" novalidate>
+        <fieldset class="popup__form-content">
+          <input id="popup__form-name-image" type="text" class="popup__form popup__form-name-image" 
+            name="imageName" value="" placeholder="Название" minlength="2" maxlength="30" required>           
+          <span class="popup__form-error popup__form-name-image-error"></span>
+          <input id="popup__form-url-image" type="url" class="popup__form popup__form-url-image" 
+            name="urlName" value="" placeholder="Ссылка на место" required>
+          <span class="popup__form-error popup__form-url-image-error"></span>
+          <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>    
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
+  <section class="popup popup-image">
+    <div class="popup-image__container">
+      <img class="popup-image__img" src="#" alt="#">
+      <button class="popup__container-btn  btn-cursor" type="button" aria-label="закрытие окна"></button>
+      <h2 class="popup-image__title"></h2>
+    </div>
+  </section>
+
+
+
+  <template class="card-template">
+    <article class="card">
+      <img class="card__img" src="#" alt="#">
+      <div class="card__content content-overflow">
+        <h2 class="card__title content-overflow"></h2>
+        <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
+      </div>
+      <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
+    </article>
+  </template>
 
 </body>
 </html>

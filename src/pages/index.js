@@ -28,43 +28,54 @@ enableValidation({
   errorClass: 'popup__form-error_action'
 });
 
+function addCard(link, name) {
+  popupImage.generatePopup();
+  popupImage.open(link, name);
+}
+
+function renderInputCard(item) {
+    const param = Object.values(item)
+    const data = {name : param[0], link: param[1]};
+    const card = new Card({
+      data : data,
+      handleCardClick : (link, name) => {
+        addCard(link, name)
+        }
+      }, '.card-template',);
+    const cardElement = card.generateCard();
+    document.querySelector('.cards').prepend(cardElement);
+};
+
+function renderInputProfil(item) {
+  const param = Object.values(item)
+  const [userName, userJob] = param;
+  userInfo.setUserInfo(userName, userJob);
+}
+
 const userInfo = new UserInfo('.profil-content__name' ,'.profil-content__profethional');
+const popupImage = new PopupWithImage('.popup-image');
+
+const popupCard = new PopupWithForm({
+  popupSelector :'.popup-card',
+  renderInput : (item) => {renderInputCard(item)} 
+});
+
+const popupProfil = new PopupWithForm({
+  popupSelector :'.popup-profil',
+  renderInput : (item) => {renderInputProfil(item)}
+});
 
 elements.openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
-  const userInfo = new UserInfo('.profil-content__name' ,'.profil-content__profethional');
-  const popup = new PopupWithForm({
-    popupSelector :'.popup-profil',
-    renderInput : (item) => {
-      const [userName, userJob] = item;
-      userInfo.setUserInfo(userName, userJob);
-    }
-  });
-  popup.generatePopup();
+  popupProfil.generatePopup();
   userInfo.getUserInfo();
-  popup.open();
+  popupProfil.open();
 }); 
 
-elements.openPopupCardButton.addEventListener('click', () => {      //обработчик событий на кнопке попапа картинок 
-  //openPopupCard(elements.popupCard);
-  const popup = new PopupWithForm({
-    popupSelector :'.popup-card',
-    renderInput : (item) => {
-      const data = {name : item[0], link: item[1]};
-      const card = new Card({
-        data : data,
-        handleCardClick : (link, name) => {
-          const popup = new PopupWithImage('.popup-image', link, name)
-          popup.generatePopup();
-          popup.open();
-          }
-        }, '.card-template',);
-      const cardElement = card.generateCard();
-      document.querySelector('.cards').prepend(cardElement);
-    }
-  });
-  popup.generatePopup();
-  popup.open();
-});
+elements.openPopupCardButton.addEventListener('click', () => {
+  popupCard.generatePopup();
+  popupCard.open();
+});      //обработчик событий на кнопке попапа картинок 
+
 
 const cardList = new Section ({
   item : initialCards,
@@ -72,9 +83,7 @@ const cardList = new Section ({
     const card = new Card({
       data : item,
       handleCardClick : (link, name) => {
-        const popup = new PopupWithImage('.popup-image', link, name)
-        popup.generatePopup();
-        popup.open();
+        addCard(link, name)
         }
       }, '.card-template',);
     const cardElement = card.generateCard();
