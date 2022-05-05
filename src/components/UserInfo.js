@@ -5,8 +5,8 @@
    }
 
    getUserInfo() {
-     document.querySelector('.popup__form-name').value = this._UserName.textContent;
-     document.querySelector('.popup__form-profetional').value = this._UserJob.textContent;
+    return [this._UserName.textContent,
+      this._UserJob.textContent];
    }
 
    setUserInfo(userName, userJob) {

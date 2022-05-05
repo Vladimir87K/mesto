@@ -1,5 +1,3 @@
-import * as elements from '../script/elementsPage.js';
-
 export class Card {
   constructor({data, handleCardClick }, templateSelector) {       //введение в в класс внешних переменных
     this._name = data.name;

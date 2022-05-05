@@ -28,68 +28,71 @@ enableValidation({
   errorClass: 'popup__form-error_action'
 });
 
-function addCard(link, name) {
-  popupImage.generatePopup();
-  popupImage.open(link, name);
-}
+const userInfo = new UserInfo('.profil-content__name' ,'.profil-content__profethional');
+const popupImage = new PopupWithImage('.popup-image');              //создание попапа картинки
 
-function renderInputCard(item) {
-    const param = Object.values(item)
-    const data = {name : param[0], link: param[1]};
-    const card = new Card({
-      data : data,
-      handleCardClick : (link, name) => {
-        addCard(link, name)
-        }
-      }, '.card-template',);
-    const cardElement = card.generateCard();
-    document.querySelector('.cards').prepend(cardElement);
+function creatCard(item) {                                          // создание новой карточки
+  const card = new Card({
+    data : item,
+    handleCardClick : (link, name) => {
+      popupImage.generatePopup();
+      popupImage.open(link, name);
+      }
+    }, '.card-template',);
+    return card;
+  }
+
+function renderInputCard(item) {                                    // получение информации с попапа карточки
+  const param = Object.values(item)                                 // и добавление ее на страницу
+  const data = {name : param[0], link: param[1]};
+  const card = creatCard(data);
+  const cardElement = card.generateCard();
+  const newCard = new Section ({}, '.cards');
+  newCard.addItem(cardElement);
 };
 
-function renderInputProfil(item) {
+const popupCard = new PopupWithForm({                               // создание попапа карточки
+  popupSelector :'.popup-card',
+  renderInput : (item) => {renderInputCard(item)} 
+});
+
+function renderInputProfil(item) {                                  // добавление информации пользователя со страницы в попап
   const param = Object.values(item)
   const [userName, userJob] = param;
   userInfo.setUserInfo(userName, userJob);
 }
 
-const userInfo = new UserInfo('.profil-content__name' ,'.profil-content__profethional');
-const popupImage = new PopupWithImage('.popup-image');
-
-const popupCard = new PopupWithForm({
-  popupSelector :'.popup-card',
-  renderInput : (item) => {renderInputCard(item)} 
-});
-
-const popupProfil = new PopupWithForm({
+const popupProfil = new PopupWithForm({                             // создание попапа профиля 
   popupSelector :'.popup-profil',
   renderInput : (item) => {renderInputProfil(item)}
 });
 
-elements.openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
-  popupProfil.generatePopup();
-  userInfo.getUserInfo();
-  popupProfil.open();
-}); 
+function addUserInfo() {                                            // добавление информации пользователя с попапа на страницу
+  const [userName, userJob] = userInfo.getUserInfo()
+  elements.nameInput.value = userName;
+  elements.jobInput.value = userJob;
+}
 
-elements.openPopupCardButton.addEventListener('click', () => {
-  popupCard.generatePopup();
-  popupCard.open();
-});      //обработчик событий на кнопке попапа картинок 
-
-
-const cardList = new Section ({
+const cardList = new Section ({                                     // создание карточек из массива
   item : initialCards,
   renderer : (item) => {
-    const card = new Card({
-      data : item,
-      handleCardClick : (link, name) => {
-        addCard(link, name)
-        }
-      }, '.card-template',);
+    const card = creatCard(item);
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
   }
 }, '.cards'
 );
 
-cardList.showAllElement();
+cardList.showAllElement();                                          // активация создания исхлдных карточек страницы
+
+elements.openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
+  popupProfil.generatePopup();
+  addUserInfo();
+  popupProfil.open();
+}); 
+
+elements.openPopupCardButton.addEventListener('click', () => {      //обработчик событий на кнопке попапа картинок 
+  popupCard.generatePopup();
+  popupCard.open();
+  formValidators['imageData'].resetValidation();
+});

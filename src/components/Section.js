@@ -7,11 +7,11 @@ export default class Section {
 
   showAllElement() {
     this._item.forEach(item => {
-      this._renderer(item);
+      this._renderer(item)
     });
   }
 
-  addItem(element) {
+  addItem(element) {            // добавление элемента на страницу
     this._container.prepend(element)
   }
 }
