@@ -51,10 +51,12 @@ function renderInputCard(item) {                                    // полу�
   newCard.addItem(cardElement);
 };
 
-const popupCard = new PopupWithForm({                               // создание попапа карточки
+const popupCard = new PopupWithForm({
   popupSelector :'.popup-card',
   renderInput : (item) => {renderInputCard(item)} 
 });
+
+popupCard.generatePopup();                                          // создание попапа карточки
 
 function renderInputProfil(item) {                                  // добавление информации пользователя со страницы в попап
   const param = Object.values(item)
@@ -62,10 +64,12 @@ function renderInputProfil(item) {                                  // доба�
   userInfo.setUserInfo(userName, userJob);
 }
 
-const popupProfil = new PopupWithForm({                             // создание попапа профиля 
+const popupProfil = new PopupWithForm({
   popupSelector :'.popup-profil',
   renderInput : (item) => {renderInputProfil(item)}
 });
+
+popupProfil.generatePopup();                                        // создание попапа профиля 
 
 function addUserInfo() {                                            // добавление информации пользователя с попапа на страницу
   const [userName, userJob] = userInfo.getUserInfo()
@@ -86,13 +90,11 @@ const cardList = new Section ({                                     // созд�
 cardList.showAllElement();                                          // активация создания исхлдных карточек страницы
 
 elements.openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
-  popupProfil.generatePopup();
   addUserInfo();
   popupProfil.open();
 }); 
 
 elements.openPopupCardButton.addEventListener('click', () => {      //обработчик событий на кнопке попапа картинок 
-  popupCard.generatePopup();
   popupCard.open();
   formValidators['imageData'].resetValidation();
 });
