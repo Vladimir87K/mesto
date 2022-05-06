@@ -39,16 +39,31 @@ function creatCard(item) {                                          // созд�
       popupImage.open(link, name);
       }
     }, '.card-template',);
-    return card;
+    const cardElement = card.generateCard();
+    return cardElement;
   }
 
+function addUserInfo() {                                            // добавление информации пользователя с попапа на страницу
+  const [userName, userJob] = userInfo.getUserInfo()
+  elements.nameInput.value = userName;
+  elements.jobInput.value = userJob;
+}
+
+const cardList = new Section ({                                     // создание карточек из массива
+  item : initialCards,
+  renderer : (item) => {
+    const card = creatCard(item);
+    cardList.addItem(card);
+  }
+}, '.cards'
+);
+
+cardList.showAllElement();                                          // активация создания исхлдных карточек страницы
+
 function renderInputCard(item) {                                    // получение информации с попапа карточки
-  const param = Object.values(item)                                 // и добавление ее на страницу
-  const data = {name : param[0], link: param[1]};
+  const data = {name: item.imageName, link: item.urlName};           // и добавление ее на страницу
   const card = creatCard(data);
-  const cardElement = card.generateCard();
-  const newCard = new Section ({}, '.cards');
-  newCard.addItem(cardElement);
+  cardList.addItem(card);
 };
 
 const popupCard = new PopupWithForm({
@@ -70,24 +85,6 @@ const popupProfil = new PopupWithForm({
 });
 
 popupProfil.generatePopup();                                        // создание попапа профиля 
-
-function addUserInfo() {                                            // добавление информации пользователя с попапа на страницу
-  const [userName, userJob] = userInfo.getUserInfo()
-  elements.nameInput.value = userName;
-  elements.jobInput.value = userJob;
-}
-
-const cardList = new Section ({                                     // создание карточек из массива
-  item : initialCards,
-  renderer : (item) => {
-    const card = creatCard(item);
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
-  }
-}, '.cards'
-);
-
-cardList.showAllElement();                                          // активация создания исхлдных карточек страницы
 
 elements.openPopapProfilButton.addEventListener('click', () => {    //обработчик событий на кнопке показа попапа)
   addUserInfo();
