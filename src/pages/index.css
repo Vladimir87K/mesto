@@ -46,3 +46,4 @@
 @import url(../blocks/popup-image/__title/popup-image__title.css);
 @import url(../blocks/popup-delete/popup-delete__title.css);
 @import url(../blocks/popup-avatar/popup__form-url-avatar.css);
+@import url(../blocks/popup/__form-url-avatar-error/popup__form-url-avatar-error.css)
