@@ -48,7 +48,7 @@
                     <span class="popup__form-error popup__form-name-error"></span>
                     <input id="popup__form-profetional" type="text" class="popup__form popup__form-profetional" name="userJob" value="Исследователь океана" minlength="2" maxlength="200" required>
                     <span class="popup__form-error popup__form-profetional-error"></span>
-                    <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>
+                    <button type="submit" class="popup__form-save" value="Сохранение...">Сохранение...</button>
                 </fieldset>
             </form>
         </div>
@@ -64,7 +64,7 @@
                     <span class="popup__form-error popup__form-name-image-error"></span>
                     <input id="popup__form-url-image" type="url" class="popup__form popup__form-url-image" name="urlName" value="" placeholder="Ссылка на место" required>
                     <span class="popup__form-error popup__form-url-image-error"></span>
-                    <button type="submit" class="popup__form-save" value="Сохранить">Сохранить</button>
+                    <button type="submit" class="popup__form-save" value="Сохранение...">Сохранение...</button>
                 </fieldset>
             </form>
         </div>
@@ -107,7 +107,10 @@
       <img class="card__img" src="#" alt="#">
       <div class="card__content content-overflow">
         <h2 class="card__title content-overflow"></h2>
-        <button class="card__like btn-cursor" type="button" aria-label="сердечко"></button>
+        <div class="card__like">
+            <button class="card__like-img btn-cursor" type="button" aria-label="сердечко"></button>
+            <p class="card__like-number">0</p>
+        </div>
       </div>
       <button class="card__delete btn-cursor" type="button" aria-label="корзина"></button>
     </article>

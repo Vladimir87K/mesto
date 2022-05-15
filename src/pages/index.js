@@ -6,6 +6,7 @@ import { FormValidator } from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithDelete from '../components/PopupWithDelete.js';
 import UserInfo from '../components/UserInfo.js';
 import { Api } from '../components/Api.js'
 
@@ -29,11 +30,12 @@ enableValidation({
     inactiveButtonClass: 'popup__form-save_disable',
     errorClass: 'popup__form-error_action'
 });
-console.log(formValidators.avatarData)
+
 const userInfo = new UserInfo('.profil-content__name', '.profil-content__profethional');
 const popupImage = new PopupWithImage('.popup-image'); //создание попапа картинки
+const popupDelete = new PopupWithDelete('.popup-delete');
 
-function creatCard(item) { // создание новой карточки
+/* function creatCard(item) { // создание новой карточки
     const card = new Card({
         data: item,
         handleCardClick: (link, name) => {
@@ -43,7 +45,7 @@ function creatCard(item) { // создание новой карточки
     }, '.card-template', );
     const cardElement = card.generateCard();
     return cardElement;
-}
+} */
 
 function addUserInfo() { // добавление информации пользователя с попапа на страницу
     const [userName, userJob] = userInfo.getUserInfo()
@@ -72,6 +74,17 @@ const cards = api.getInitialCards()
     })
     .catch(err => console.log(err));
 
+function creatCard(item) { // создание новой карточки
+    const card = new Card({
+        data: item,
+        handleCardClick: (link, name) => {
+            popupImage.generatePopup();
+            popupImage.open(link, name);
+        }
+    }, '.card-template', );
+    const cardElement = card.generateCard();
+    return cardElement;
+}
 /* const cardList = new Section({ // создание карточек из массива
     item: initialCards,
     renderer: (item) => {
@@ -95,15 +108,23 @@ const popupCard = new PopupWithForm({
 
 popupCard.generatePopup(); // создание попапа карточки
 
-function renderInputProfil(item) { // добавление информации пользователя со страницы в попап
-    const param = Object.values(item)
+function renderInputProfil(data, api) { // добавление информации пользователя со страницы в попап
+    console.log(api);
+    api.correctUserInfo(data)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    const param = Object.values(data);
+
     const [userName, userJob] = param;
     userInfo.setUserInfo(userName, userJob);
 }
 
 const popupProfil = new PopupWithForm({
     popupSelector: '.popup-profil',
-    renderInput: (item) => { renderInputProfil(item) }
+    renderInput: (item, api) => {
+        renderInputProfil(item, api)
+    },
+    api: api
 });
 
 popupProfil.generatePopup(); // создание попапа профиля 
