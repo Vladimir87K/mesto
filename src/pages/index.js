@@ -63,16 +63,20 @@ const api = new Api({
 
 const cards = api.getInitialCards()
     .then((res) => {
-        const newCardList = new Section({ // создание карточек из массива
+        const сardList = new Section({ // создание карточек из массива с сервера
             item: res,
             renderer: (item) => {
                 const card = creatCard(item);
-                newCardList.addItem(card);
+                сardList.addItem(card);
             }
         }, '.cards');
-        newCardList.showAllElement();
+        сardList.showAllElement();
     })
     .catch(err => console.log(err));
+
+const user = api.getInitialProfil() //получение данных пользователя с сервера
+    .then(res => userInfo.setUserInfo(res.name, res.about))
+    .catch(err => console.log('Ошибочка вышла...' + err));
 
 function creatCard(item) { // создание новой карточки
     const card = new Card({
