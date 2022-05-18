@@ -30,6 +30,7 @@ export default class PopupWithForm extends Popup {
     _setEventListeners() {
         super._setEventListeners();
         this._element.addEventListener('submit', (e) => {
+            this._findButtonSubmit().textContent = "Загрузка...";
             e.preventDefault();
             this._renderInput(this._getInputValues(), this._api);
             this.close();

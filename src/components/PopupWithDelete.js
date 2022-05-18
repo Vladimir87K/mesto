@@ -12,6 +12,11 @@ export default class PopupWithDelete extends Popup {
         this.card = card;
     }
 
+    open() {
+        super.open();
+        this._findButtonSubmit().textContent = 'Да'
+    }
+
     validationDelete(item) {
         return item;
     }
@@ -20,9 +25,9 @@ export default class PopupWithDelete extends Popup {
         super._setEventListeners();
         this._element.addEventListener('submit', (e) => {
             e.preventDefault();
+            this._findButtonSubmit().textContent = 'Удаление выполняется...'
             this._confirmDelete(this.cardId, this.card);
             this.close();
-
         });
 
     }

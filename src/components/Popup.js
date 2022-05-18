@@ -4,6 +4,10 @@ export default class Popup {
         this._element = document.querySelector(this._popupSelector);
     }
 
+    /*     findButtonSubmit() {
+            return this._element.querySelector('.popup__form-save');
+        } */
+
     generatePopup() {
         this._element;
         this._setEventListeners();
@@ -11,7 +15,12 @@ export default class Popup {
         return this._element;
     }
 
+    _findButtonSubmit() {
+        return this._element.querySelector('.popup__form-save');
+    }
+
     open() {
+        this._findButtonSubmit().textContent = 'Сохранить';
         this._element.classList.add('popup_opened');
         this._element.addEventListener('keydown', (event) => {
             this._handleEscClose(event);

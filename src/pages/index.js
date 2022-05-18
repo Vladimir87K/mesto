@@ -38,7 +38,7 @@ const userInfo = new UserInfo('.profil-content__name', '.profil-content__profeth
 const popupImage = new PopupWithImage('.popup-image'); //создание попапа картинки
 const popupDelete = new PopupWithDelete('.popup-delete', confirmDelete); //созание попапа подтверждения удаления
 
-const popupCard = new PopupWithForm({ //экземпляр попапасоздания карточки
+const popupCard = new PopupWithForm({ //экземпляр попапа создания карточки
     popupSelector: '.popup-card',
     renderInput: (item) => { renderInputCard(item) }
 });
