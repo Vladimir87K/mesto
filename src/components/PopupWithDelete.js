@@ -3,8 +3,7 @@ import Popup from "./Popup.js";
 export default class PopupWithDelete extends Popup {
     constructor(popupSelector, confirmDelete) {
         super(popupSelector)
-        console.log(this._element),
-            this._confirmDelete = confirmDelete;
+        this._confirmDelete = confirmDelete;
     }
 
     generatePopup(cardId, card) {

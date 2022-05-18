@@ -1,38 +1,37 @@
 export class Api {
     constructor(options) {
-        this._url = options.url;
+        this._urlBase = options.urlBase;
         this._headers = options.headers;
 
     }
 
+    _checkError(res) {
+        if (res.ok) {
+            return res.json();
+        } else {
+            Promise.reject('Произошла ошибка');
+        }
+    }
+
+
     getInitialCards() {
-        return fetch(this._url, {
+        return fetch(`${this._urlBase}/cards`, {
                 method: 'GET',
                 headers: this._headers
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject('Произошла ошибка в загрузке карточек, упс...')
-            })
+            .then(this._checkError)
     }
 
     getInitialProfil() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/users/me', {
+        return fetch(`${this._urlBase}/users/me`, {
                 method: 'GET',
                 headers: this._headers
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject('Произошла ошибка в загрузке профиля, упс...')
-            })
+            .then(this._checkError)
     }
 
     addNewCards(data) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/cards', {
+        return fetch(`${this._urlBase}/cards`, {
                 method: 'POST',
                 headers: this._headers,
                 body: JSON.stringify({
@@ -40,29 +39,19 @@ export class Api {
                     link: data.link
                 })
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject('Произошла ошибка при загрузке карточки, упс...')
-            })
+            .then(this._checkError)
     }
 
     deleteCard(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/cards/${cardId}`, {
+        return fetch(`${ this._urlBase}/cards/${cardId}`, {
                 method: 'DELETE',
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject('Произошла ошибка удаления, упс...')
-            })
+            .then(this._checkError)
     }
 
     correctUserInfo(data) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/users/me', {
+        return fetch(`${this._urlBase}/users/me`, {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify({
@@ -70,85 +59,34 @@ export class Api {
                     about: data.userJob
                 })
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject('Произошла ошибка, упс...')
-            })
+            .then(this._checkError)
     }
-
 
     correctUserAvatar(data) {
         console.log(data)
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-41/users/me/avatar', {
+        return fetch(`${this._urlBase}/users/me/avatar`, {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify({
                     avatar: data.urlAvatar
                 })
             })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject('Произошла ошибка загрузки аватарки, упс...')
-            })
+            .then(this._checkError)
     }
+
     addLikeCard(idCard) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/cards/${idCard}/likes`, {
+        return fetch(`${this._urlBase}/cards/${idCard}/likes`, {
                 method: 'PUT',
                 headers: this._headers,
             })
-            .then(res => {
-                if (res.ok) {
-                    /* console.log(res.json()); */
-                    return res.json();
-                }
-                return Promise.reject('Произошла ошибка постановки лайка, упс...')
-            })
+            .then(this._checkError)
     }
 
     deleteLikeCard(idCard) {
-            return fetch(`https://mesto.nomoreparties.co/v1/cohort-41/cards/${idCard}/likes`, {
-                    method: 'DELETE',
-                    headers: this._headers,
-                })
-                .then(res => {
-                    if (res.ok) {
-                        /*   console.log(res.json()) */
-                        return res.json();
-                    }
-                    return Promise.reject('Произошла ошибка удаления лайка, упс...')
-                })
-        }
-        /*  addNewCards(data) {
-                                     return fetch(https://mesto.nomoreparties.co/v1/cohort-41/users/me/avatar, {
-                                             method: 'POST',
-                                             headers: this._headers,
-                                             body: JSON.stringify(data)
-                                         })
-                                         .then(res => {
-                                             if (res.ok) {
-                                                 return res.json();
-                                             }
-                                             return Promise.reject('Произошла ошибка, упс...')
-                                         })
-                                 }
-
-                                 deleteCards(data) {
-                                         return fetch(https://mesto.nomoreparties.co/v1/cohort-41/cards/cardId/likes, {
-                                                 method: 'DELETE',
-                                                 headers: this._headers,
-                                             })
-                                             .then(res => {
-                                                 if (res.ok) {
-                                                     return res.json();
-                                                 }
-                                                 return Promise.reject('Произошла ошибка, упс...')
-                                             })
-                                     }
-                
-         */
-        // другие методы работы с API
+        return fetch(`${this._urlBase}/cards/${idCard}/likes`, {
+                method: 'DELETE',
+                headers: this._headers,
+            })
+            .then(this._checkError)
+    }
 }

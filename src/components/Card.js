@@ -10,7 +10,6 @@ export class Card {
         this._handleDeleteIconClick = handleDeleteIconClick;
         this._handleCardClick = handleCardClick; //функция, открывает попап с картинкой при нажатии
         this._selector = templateSelector;
-        console.log(data)
     }
 
     _getTemplate() { //поиск и возврат клона темплайт-элемента
@@ -65,7 +64,5 @@ export class Card {
 
     _deleteCard() { //удаление карточки
         this._handleDeleteIconClick(this._cardId, this._element);
-        /*         this._element.remove();
-                this._element = null; */
     }
 }
