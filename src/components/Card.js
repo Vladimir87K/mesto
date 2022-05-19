@@ -23,14 +23,15 @@ export class Card {
 
     _handleDeleteIcon(card) {
         if (this._myId !== this._userId) {
-            card.querySelector('.card__delete').style.display = 'none';
+            this._iconDelete.style.display = 'none';
         }
     }
 
     generateCard() { //заполнение элемента содержимым
         this._element = this._getTemplate();
-        this._cardImg = this._element.querySelector('.card__like-img');
-        this._numberLikes = this._element.querySelector('.card__like-number')
+        this._cardLike = this._element.querySelector('.card__like-img');
+        this._numberLikes = this._element.querySelector('.card__like-number');
+        this._iconDelete = this._element.querySelector('.card__delete');
 
         const image = this._element.querySelector('.card__img');
         image.src = this._link;
@@ -39,7 +40,7 @@ export class Card {
         this._numberLikes.textContent = this._like.length;
 
         if (this._checkMyLike()) {
-            this._cardImg.classList.add('card__like-img_active');
+            this._cardLike.classList.add('card__like-img_active');
         }
 
         this._setEventListeners(this._id);
@@ -48,10 +49,10 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._element.querySelector('.card__like-img').addEventListener('click', () => { //определить наличие или отсутствие своего лайка
+        this._cardLike.addEventListener('click', () => { //определить наличие или отсутствие своего лайка
             this._handleLikeClick(this); //или в этой функции...
         });
-        this._element.querySelector('.card__delete').addEventListener('click', () => {
+        this._iconDelete.addEventListener('click', () => {
             this._deleteCard();
         });
         this._element.querySelector('.card__img').addEventListener('click', () => {
@@ -60,7 +61,7 @@ export class Card {
     }
 
     _toggleLike() { //лайки
-        this._cardImg.classList.toggle('card__like-img_active');
+        this._cardLike.classList.toggle('card__like-img_active');
     }
 
     _deleteCard() { //удаление карточки
@@ -68,7 +69,7 @@ export class Card {
     }
 
     _handleLikeClick() {
-        if (!this._cardImg.classList.contains('card__like-img_active')) {
+        if (!this._cardLike.classList.contains('card__like-img_active')) {
             this._api.addLikeCard(this._cardId)
                 .then(res => {
                     this._numberLikes.textContent = res.likes.length;

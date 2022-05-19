@@ -91,7 +91,7 @@ function confirmDelete(cardId, card) {
     api.deleteCard(cardId)
         .catch(err => console.log(err))
         .finally(() => {
-            setTimeout((popupDelete.findButtonSubmit().textContent = 'Да'), 2000)
+            popupDelete.findButtonSubmit().textContent = 'Да';
         });
     card.remove();
     card = null;
@@ -126,7 +126,9 @@ function renderInputCard(item) { // получение информации с �
             popupCard.close();
         })
         .catch(err => console.log(err))
-        .finally(() => { setTimeout((popupCard.findButtonSubmit().textContent = 'Сохранить'), 2000) })
+        .finally(() => {
+            popupCard.findButtonSubmit().textContent = 'Сохранить';
+        })
 };
 
 function renderInputProfil(data) { // добавление информации пользователя со страницы в попап и на сервер
@@ -137,7 +139,7 @@ function renderInputProfil(data) { // добавление информации 
         })
         .catch(err => console.log(err))
         .finally(() => {
-            setTimeout((popupProfil.findButtonSubmit().textContent = "Сохранить"), 2000)
+            popupProfil.findButtonSubmit().textContent = "Сохранить";
         })
 }
 
@@ -148,7 +150,9 @@ function renderInputAvatar(item) {
             popupAvatar.close()
         })
         .catch(err => console.log(err))
-        .finally(() => { setTimeout((popupAvatar.findButtonSubmit().textContent = 'Сохранить'), 2000) })
+        .finally(() => {
+            popupAvatar.findButtonSubmit().textContent = 'Сохранить';
+        })
 }
 
 function addUserInfo() { // добавление информации пользователя с попапа на страницу
