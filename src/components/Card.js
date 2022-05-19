@@ -1,15 +1,15 @@
 export class Card {
-    constructor({ myId, data, handleCardClick, handleLikeClick, handleDeleteIconClick }, templateSelector) { //введение в в класс внешних переменных
+    constructor({ myId, data, handleCardClick, handleDeleteIconClick, api }, templateSelector) { //введение в в класс внешних переменных
         this._myId = myId;
         this._cardId = data._id;
         this._name = data.name;
         this._link = data.link;
         this._userId = data.owner._id;
         this._like = data.likes;
-        this._handleLikeClick = handleLikeClick;
         this._handleDeleteIconClick = handleDeleteIconClick;
         this._handleCardClick = handleCardClick; //функция, открывает попап с картинкой при нажатии
         this._selector = templateSelector;
+        this._api = api;
     }
 
     _getTemplate() { //поиск и возврат клона темплайт-элемента
@@ -29,15 +29,17 @@ export class Card {
 
     generateCard() { //заполнение элемента содержимым
         this._element = this._getTemplate();
+        this._cardImg = this._element.querySelector('.card__like-img');
+        this._numberLikes = this._element.querySelector('.card__like-number')
 
         const image = this._element.querySelector('.card__img');
         image.src = this._link;
         image.alt = this._name;
         this._element.querySelector('.card__title').textContent = this._name;
-        this._element.querySelector('.card__like-number').textContent = this._like.length;
+        this._numberLikes.textContent = this._like.length;
 
         if (this._checkMyLike()) {
-            this._element.querySelector('.card__like-img').classList.add('card__like-img_active');
+            this._cardImg.classList.add('card__like-img_active');
         }
 
         this._setEventListeners(this._id);
@@ -47,7 +49,7 @@ export class Card {
 
     _setEventListeners() {
         this._element.querySelector('.card__like-img').addEventListener('click', () => { //определить наличие или отсутствие своего лайка
-            this._toggleLike(); //или в этой функции...
+            this._handleLikeClick(this); //или в этой функции...
         });
         this._element.querySelector('.card__delete').addEventListener('click', () => {
             this._deleteCard();
@@ -58,11 +60,28 @@ export class Card {
     }
 
     _toggleLike() { //лайки
-        this._element.querySelector('.card__like-img').classList.toggle('card__like-img_active');
-        this._handleLikeClick(this._cardId, this._element);
+        this._cardImg.classList.toggle('card__like-img_active');
     }
 
     _deleteCard() { //удаление карточки
         this._handleDeleteIconClick(this._cardId, this._element);
+    }
+
+    _handleLikeClick() {
+        if (!this._cardImg.classList.contains('card__like-img_active')) {
+            this._api.addLikeCard(this._cardId)
+                .then(res => {
+                    this._numberLikes.textContent = res.likes.length;
+                    this._toggleLike();
+                })
+                .catch(err => console.log(err));
+        } else {
+            this._api.deleteLikeCard(this._cardId)
+                .then(res => {
+                    this._numberLikes.textContent = res.likes.length;
+                    this._toggleLike()
+                })
+                .catch(err => console.log(err));
+        }
     }
 }

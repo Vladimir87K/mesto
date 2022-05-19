@@ -4,9 +4,6 @@ export default class Popup {
         this._element = document.querySelector(this._popupSelector);
     }
 
-    /*     findButtonSubmit() {
-            return this._element.querySelector('.popup__form-save');
-        } */
 
     generatePopup() {
         this._element;
@@ -15,21 +12,21 @@ export default class Popup {
         return this._element;
     }
 
-    _findButtonSubmit() {
+    findButtonSubmit() {
         return this._element.querySelector('.popup__form-save');
     }
 
     open() {
-        this._findButtonSubmit().textContent = 'Сохранить';
         this._element.classList.add('popup_opened');
-        this._element.addEventListener('keydown', (event) => {
+        document.addEventListener('keydown', (event) => {
             this._handleEscClose(event);
+
         });
     }
 
     close() {
         this._element.classList.remove('popup_opened');
-        this._element.removeEventListener('keydown', (event) => {
+        document.removeEventListener('keydown', (event) => {
             this._handleEscClose(event);
         });
     }

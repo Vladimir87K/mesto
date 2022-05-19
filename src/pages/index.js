@@ -87,25 +87,12 @@ Promise.all([api.getInitialCards(), api.getInitialProfil()]) // ожидание
 
 //------------------------- функции ------------------------
 
-function handleLikeClick(idCard, card) {
-    if (!card.querySelector('.card__like-img').classList.contains('card__like-img_active')) {
-        api.deleteLikeCard(idCard)
-            .then(res => {
-                card.querySelector('.card__like-number').textContent = res.likes.length;
-            })
-            .catch(err => console.log(err));
-    } else {
-        api.addLikeCard(idCard)
-            .then(res => {
-                card.querySelector('.card__like-number').textContent = res.likes.length;
-            })
-            .catch(err => console.log(err));
-    }
-}
-
 function confirmDelete(cardId, card) {
     api.deleteCard(cardId)
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => {
+            setTimeout((popupDelete.findButtonSubmit().textContent = 'Да'), 2000)
+        });
     card.remove();
     card = null;
 }
@@ -123,8 +110,8 @@ function creatCard(item, myId) { // создание новой карточки
             popupImage.generatePopup();
             popupImage.open(link, name);
         },
-        handleLikeClick: (idCard, card) => { handleLikeClick(idCard, card) },
-        handleDeleteIconClick: (cardId, card) => { handleDeleteIconClick(cardId, card) }
+        handleDeleteIconClick: (cardId, card) => { handleDeleteIconClick(cardId, card) },
+        api: api
     }, '.card-template', );
     const cardElement = card.generateCard();
     return cardElement;
@@ -136,23 +123,32 @@ function renderInputCard(item) { // получение информации с �
         .then(res => {
             const card = creatCard(res, userId);
             cardList.addItem(card);
-        });
+            popupCard.close();
+        })
+        .catch(err => console.log(err))
+        .finally(() => { setTimeout((popupCard.findButtonSubmit().textContent = 'Сохранить'), 2000) })
 };
 
 function renderInputProfil(data) { // добавление информации пользователя со страницы в попап и на сервер
     api.correctUserInfo(data) // и добавление ее на страницу
         .then(res => {
-            userInfo.setUserInfo(res.name, res.about, res.avatar)
+            userInfo.setUserInfo(res.name, res.about, res.avatar);
+            popupProfil.close();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => {
+            setTimeout((popupProfil.findButtonSubmit().textContent = "Сохранить"), 2000)
+        })
 }
 
 function renderInputAvatar(item) {
     api.correctUserAvatar(item)
         .then(res => {
             elements.avatar.src = res.avatar;
+            popupAvatar.close()
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => { setTimeout((popupAvatar.findButtonSubmit().textContent = 'Сохранить'), 2000) })
 }
 
 function addUserInfo() { // добавление информации пользователя с попапа на страницу
