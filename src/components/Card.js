@@ -32,10 +32,10 @@ export class Card {
         this._cardLike = this._element.querySelector('.card__like-img');
         this._numberLikes = this._element.querySelector('.card__like-number');
         this._iconDelete = this._element.querySelector('.card__delete');
+        this._image = this._element.querySelector('.card__img');
 
-        const image = this._element.querySelector('.card__img');
-        image.src = this._link;
-        image.alt = this._name;
+        this._image.src = this._link;
+        this._image.alt = this._name;
         this._element.querySelector('.card__title').textContent = this._name;
         this._numberLikes.textContent = this._like.length;
 
@@ -55,7 +55,7 @@ export class Card {
         this._iconDelete.addEventListener('click', () => {
             this._deleteCard();
         });
-        this._element.querySelector('.card__img').addEventListener('click', () => {
+        this._image.addEventListener('click', () => {
             this._handleCardClick(this._link, this._name);
         });
     }
