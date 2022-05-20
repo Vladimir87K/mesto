@@ -2,14 +2,8 @@ export default class Popup {
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
         this._element = document.querySelector(this._popupSelector);
-    }
-
-
-    generatePopup() {
-        this._element;
-        this._setEventListeners();
-
-        return this._element;
+        this._buttonClose = this._element.querySelector('.popup__container-btn');
+        this._handleEscClose = this._handleEscClose.bind(this)
     }
 
     findButtonSubmit() {
@@ -18,17 +12,12 @@ export default class Popup {
 
     open() {
         this._element.classList.add('popup_opened');
-        document.addEventListener('keydown', (event) => {
-            this._handleEscClose(event);
-
-        });
+        document.addEventListener('keydown', this._handleEscClose);
     }
 
     close() {
         this._element.classList.remove('popup_opened');
-        document.removeEventListener('keydown', (event) => {
-            this._handleEscClose(event);
-        });
+        document.removeEventListener('keydown', this._handleEscClose)
     }
 
     _handleEscClose(event) {
@@ -43,8 +32,8 @@ export default class Popup {
         }
     }
 
-    _setEventListeners() {
-        this._element.querySelector('.popup__container-btn').addEventListener('click', () => {
+    setEventListeners() {
+        this._buttonClose.addEventListener('click', () => {
             this.close();
         });
         this._element.closest('.popup').addEventListener('mousedown', (event) => {

@@ -6,23 +6,18 @@ export default class PopupWithDelete extends Popup {
         this._confirmDelete = confirmDelete;
     }
 
-    generatePopup(cardId, card) {
-        super.generatePopup();
+    open(cardId, card) {
+        super.open();
         this._cardId = cardId;
         this._card = card;
     }
 
-    validationDelete(item) {
-        return item;
-    }
-
-    _setEventListeners() {
-        super._setEventListeners();
+    setEventListeners() {
+        super.setEventListeners();
         this._element.addEventListener('submit', (e) => {
             e.preventDefault();
             this.findButtonSubmit().textContent = 'Удаление выполняется...'
             this._confirmDelete(this._cardId, this._card);
-            this.close();
         });
 
     }

@@ -5,6 +5,7 @@ export class FormValidator {
 
         this._inputList = this._inputForm.querySelectorAll(`${this._config.inputElement}`);
         this._button = this._inputForm.querySelector(`${this._config.buttonElement}`);
+        console.log(this._config.inputErrorClass)
     }
 
     resetValidation() {
@@ -21,17 +22,17 @@ export class FormValidator {
         }
         // включение и выключение кнопки по состоянию валидации
     _toggleButtonState() {
-            if (this._hasInvalidInput(this._inputList)) {
-                this._button.classList.add(`${this._config.inactiveButtonClass}`);
-                this._button.disabled = true;
-            } else {
-                this._button.classList.remove(`${this._config.inactiveButtonClass}`);
-                this._button.disabled = false;
-            }
+        if (this._hasInvalidInput(this._inputList)) {
+            this._button.classList.add(`${this._config.inactiveButtonClass}`);
+            this._button.disabled = true;
+        } else {
+            this._button.classList.remove(`${this._config.inactiveButtonClass}`);
+            this._button.disabled = false;
         }
-        //активация this.формы(валидно). Связать с кнопкой. Скрыть ошибку
+    }
+
     _showInputError(inputElement) {
-        const errorElement = document.querySelector(`.${inputElement.id}-error`);
+        const errorElement = this._inputForm.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.add(this._config.inputErrorClass);
         errorElement.textContent = `${inputElement.validationMessage}`;
         errorElement.classList.add(this._config.errorClass);
@@ -39,7 +40,7 @@ export class FormValidator {
 
     //дезактивация формы (невалидно). Связать с кнопкой. Вызвать ошибку
     _hideInputError(inputElement) {
-        const errorElement = document.querySelector(`.${inputElement.id}-error`);
+        const errorElement = this._inputForm.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.remove(this._config.inputErrorClass);
         errorElement.textContent = '';
         errorElement.classList.remove(this._config.errorClass);

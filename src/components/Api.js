@@ -63,7 +63,6 @@ export class Api {
     }
 
     correctUserAvatar(data) {
-        console.log(data)
         return fetch(`${this._urlBase}/users/me/avatar`, {
                 method: 'PATCH',
                 headers: this._headers,

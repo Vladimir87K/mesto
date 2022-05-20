@@ -11,6 +11,7 @@
         line-height: 22px;
         text-align: center;
         cursor: pointer;
+        margin-top: 48px;
     }
     
     .popup__form-save:hover {
