@@ -1,5 +1,5 @@
 {
-    "homepage": "http://Vladimir87K.github.io/mesto",
+    "homepage": "https://github.com/Vladimir87K/mesto#readme",
     "name": "yandex.practikum",
     "version": "0.0.1",
     "description": "Learning platform",
@@ -19,7 +19,6 @@
     "bugs": {
         "url": "https://github.com/Vladimir87K/mesto/issues"
     },
-    "homepage": "https://github.com/Vladimir87K/mesto#readme",
     "devDependencies": {
         "@babel/core": "^7.17.10",
         "@babel/preset-env": "^7.17.10",
