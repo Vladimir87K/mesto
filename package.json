@@ -1,5 +1,5 @@
 {
-    "homepage": "https://github.com/Vladimir87K/mesto",
+    "homepage": "http://Vladimir87K.github.io/mesto",
     "name": "yandex.practikum",
     "version": "0.0.1",
     "description": "Learning platform",
@@ -12,7 +12,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Vladimir87K/mesto.git"
+        "url": "git+https://github.com/Vladimir87K/mesto"
     },
     "author": "",
     "license": "ISC",
